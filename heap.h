@@ -4,10 +4,23 @@
 #include <time.h>
 #include <stdint.h>
 
+struct chunk_t{
+
+	intptr_t start;
+	struct chunk_t * next;
+	struct chunk_t * prev;
+	unsigned len;
+	unsigned short checksum;
+
+};
+
+typedef struct chunk_t * chunk;
+
 typedef struct{
 
 	intptr_t start;
 	intptr_t end;
+	chunk head;
 
 } heap;
 
@@ -24,6 +37,7 @@ enum pointer_type_t
 
 int heap_setup(void);
 void heap_clean(void);
+unsigned short checksum(void * str);
 void* heap_malloc(size_t size);
 void* heap_calloc(size_t number, size_t size);
 void* heap_realloc(void* memblock, size_t count);
