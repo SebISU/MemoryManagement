@@ -9,7 +9,7 @@ struct chunk_t{
 	intptr_t start;
 	struct chunk_t * next;
 	struct chunk_t * prev;
-	unsigned len;	//can be a problem with large chunks, but tests do not check it
+	unsigned len;
 	unsigned short checksum;
 
 };

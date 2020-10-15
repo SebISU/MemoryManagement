@@ -7,7 +7,5 @@
 
 int main(void){
 
-    heap_setup();
-
     return 0;
 }
