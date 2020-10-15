@@ -15,6 +15,7 @@
 #define ADD_SIZE (2 * FENCE + CHUNK)  // addictional allocation length
 #define BEF_DATA (FENCE + CHUNK) // from pointer to first data index
 #define FENCE_VAL 0xFFFFFFFFFFFFFFFF // value for fence validation
+#define REMAINDER(ptr) ((intptr_t)(ptr) & (intptr_t)(PAGE_SIZE - 1)) // calculate remainder of page allignment
 
 heap manager = {.start = 0, .end = 0, .head = NULL};
 
@@ -64,7 +65,7 @@ void* heap_malloc(size_t size){     // can be a problem with assigning pointers 
 
     if (manager.head == NULL){
 
-        if (manager.start + size + ADD_SIZE >= manager.end){
+        if (manager.start + size + ADD_SIZE > manager.end){
             
             if (-1 == custom_sbrk((size + ADD_SIZE)/PAGE_SIZE * PAGE_SIZE))
                 return NULL;
@@ -88,7 +89,7 @@ void* heap_malloc(size_t size){     // can be a problem with assigning pointers 
 
         chunk el = manager.head;
 
-        if (manager.head != manager.start && size + ADD_SIZE <= manager.head - manager.start){
+        if (manager.head != manager.start && manager.start + size + ADD_SIZE <= manager.head){
 
             ((chunk)manager.start)->start = manager.start + BEF_DATA;
             ((chunk)manager.start)->prev = NULL;
@@ -105,15 +106,15 @@ void* heap_malloc(size_t size){     // can be a problem with assigning pointers 
 
         while(el != NULL){
 
-            if (el->next == NULL && el + el->len + 2 * ADD_SIZE + size >= manager.end){
+            if (el->next == NULL && el + el->len + 2 * ADD_SIZE + size > manager.end){
 
                 if (-1 == custom_sbrk(((size + ADD_SIZE - manager.end + el->start + el->len + FENCE)/PAGE_SIZE + 1) * PAGE_SIZE))
                     return NULL;
 
-                manager.end += ((size + ADD_SIZE - manager.end + el->start + el->len + FENCE)/PAGE_SIZE + 1) * PAGE_SIZE;
+                manager.end += ((size + ADD_SIZE - manager.end + el->start + el->len + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
             }
 
-            if (el->next == NULL || el + el->len + 2 * ADD_SIZE + size < el->next){
+            if (el->next == NULL || el + el->len + 2 * ADD_SIZE + size <= el->next){
 
                 if (el->next == NULL){
 
@@ -181,7 +182,7 @@ void* heap_realloc(void* memblock, size_t count){
 
             if (el->next == NULL){
 
-                if (el->start + count + FENCE >= manager.end){
+                if (el->start + count + FENCE > manager.end){
 
                     if (el->prev)
                         el->prev->next = NULL;
@@ -212,7 +213,7 @@ void* heap_realloc(void* memblock, size_t count){
             }
             else{
 
-                if (el->start + count + FENCE >= el->next){
+                if (el->start + count + FENCE > el->next){
 
                     if (el->prev){
                         el->prev->next = el->next;
@@ -364,14 +365,14 @@ enum pointer_type_t get_pointer_type(const void* const pointer){
     else{
 
         if (manager.start != manager.end)
-            return pointer_unallocated;
+            return pointer_unallocated;     //I am not sure
     }
 
 }
 
 int heap_validate(void){
 
-    if (manager.end <= manager.start || (manager.end - manager.start) % PAGE_SIZE != 0)
+    if (manager.end <= manager.start || REMAINDER(manager.end - manager.start) != 0)
         return 2;
 
     if (manager.head != NULL){
@@ -395,20 +396,118 @@ int heap_validate(void){
 
 void* heap_malloc_aligned(size_t count){
 
-    return NULL;
+    if (manager.start == manager.end || count <= 0 || heap_validate())
+        return NULL;
 
+    if (manager.head == NULL){
+
+        if (manager.start + PAGE_SIZE + count + FENCE >= manager.end){
+            
+            if (-1 == custom_sbrk((PAGE_SIZE + count + FENCE - 1)/PAGE_SIZE * PAGE_SIZE))
+                return NULL;
+            
+            manager.end += (PAGE_SIZE + count + FENCE)/PAGE_SIZE * PAGE_SIZE;
+        }
+
+        manager.head = manager.start + PAGE_SIZE - BEF_DATA;
+        ((chunk)manager.head)->start = manager.start + PAGE_SIZE;
+        ((chunk)manager.head)->prev = NULL;
+        ((chunk)manager.head)->next = NULL;
+        ((chunk)manager.head)->len = count;
+        ((chunk)manager.head)->checksum = checksum((void*)manager.head);
+        *(double*)(manager.head + CHUNK) = FENCE_VAL;
+        *(double*)(manager.head + count + ADD_SIZE - CHUNK) = FENCE_VAL;
+
+        return ((chunk)manager.head)->start;
+            
+    }
+    else{
+
+        chunk el = manager.head;
+
+        if (manager.head != manager.start && manager.start + PAGE_SIZE + count + FENCE < manager.head){
+
+            manager.head->prev = manager.start + PAGE_SIZE - BEF_DATA;
+            manager.head->prev->next = manager.head;
+            manager.head = manager.head->prev;
+            ((chunk)manager.head)->start = manager.start + PAGE_SIZE;
+            ((chunk)manager.head)->prev = NULL;
+            ((chunk)manager.head)->len = count;
+            ((chunk)manager.head)->checksum = checksum((void*)manager.head);
+            *(double*)(manager.head + CHUNK) = FENCE_VAL;
+            *(double*)(manager.head + count + ADD_SIZE - CHUNK) = FENCE_VAL;
+
+            return ((chunk)manager.head)->start;
+        }
+
+        while(el != NULL){
+
+            if (el->next == NULL){
+
+                if (PAGE_SIZE - REMAINDER(el + ADD_SIZE + el->len) >= BEF_DATA){
+
+                    if (-1 == custom_sbrk(((count + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE))
+                        return NULL;
+
+                    el->next = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + PAGE_SIZE - BEF_DATA;
+                }
+                else{
+
+                    if (-1 == custom_sbrk(((count + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE))
+                        return NULL;
+
+                    el->next = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + 2 * PAGE_SIZE - BEF_DATA;
+                }
+                
+                el->next->prev = el;
+                el->next->next = NULL;
+                el->next->len = count;
+                el->next->start = el->next + BEF_DATA;
+                el->next->checksum = checksum((void*)el->next);
+                *(double*)(el->next + CHUNK) = FENCE_VAL;
+                *(double*)(el->next + count + ADD_SIZE - CHUNK) = FENCE_VAL;
+
+                return el->next->start;
+            }
+            else{
+
+                int x = 2;
+
+                if (PAGE_SIZE - REMAINDER(el + ADD_SIZE + el->len) >= BEF_DATA)
+                    x = 1;
+
+                if (el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + 2 * PAGE_SIZE + count + FENCE < el->next){
+
+                    el->next->prev = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + x * PAGE_SIZE - BEF_DATA;
+                    el->next->prev->next = el->next;
+                    el->next = el->next->prev;
+                    el->next->prev = el;
+                    el->next->len = count;
+                    el->next->start = el->next + BEF_DATA;
+                    el->next->checksum = checksum((void*)el->next);
+                    *(double*)(el->next + CHUNK) = FENCE_VAL;
+                    *(double*)(el->next + count + ADD_SIZE - CHUNK) = FENCE_VAL;
+
+                    return el->next->start;
+                }
+            }
+
+            el = el->next;
+        }
+    }
 }
 
 void* heap_calloc_aligned(size_t number, size_t size){
 
-    return NULL;
-
+    void * pointer = heap_malloc_aligned(number*size);
+    if (pointer == NULL)
+        return NULL;
+    return memset(pointer, 0, number*size);
 }
 
 void* heap_realloc_aligned(void* memblock, size_t size){
 
-    return NULL;
+    
 
 }
 
-//suma wszystkich bajtów w strukturze == pole z sumą w strukturze, plotek 8 bajtów
