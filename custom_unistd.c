@@ -14,7 +14,7 @@
 uint8_t memory[PAGE_SIZE * PAGES_AVAILABLE] __attribute__((aligned(PAGE_SIZE)));
 
 
-struct mm_struct mm = {.start_brk = (intptr_t)(memory), .brk = (intptr_t)(memory)};
+struct mm_struct mm = {.start_brk = (intptr_t)memory, .brk = (intptr_t)memory};
 
 
 void* custom_sbrk(intptr_t delta)
