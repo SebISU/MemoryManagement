@@ -145,6 +145,12 @@ void* heap_malloc(size_t size){     // can be a problem with assigning pointers 
 
 void* heap_calloc(size_t number, size_t size){
 
+    void * pointer = heap_malloc(number*size);
+    if (pointer == NULL)
+        return NULL;
+    return memset(pointer, 0, number*size);
+
+/*
     if (manager.start == manager.end || size <= 0 || number <= 0 || heap_validate())
             return NULL;
 
@@ -227,6 +233,7 @@ void* heap_calloc(size_t number, size_t size){
             el = el->next;
         }
     }
+*/
 }
 
 void* heap_realloc(void* memblock, size_t count){
