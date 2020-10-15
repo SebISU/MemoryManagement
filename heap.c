@@ -251,8 +251,6 @@ void* heap_realloc(void* memblock, size_t count){
         return memblock;
     }
 
-    //1, 2, 4
-
     chunk el = manager.head;
 
     while(el != NULL){
@@ -261,16 +259,78 @@ void* heap_realloc(void* memblock, size_t count){
 
             if (el->next == NULL){
 
-                
+                if (el->start + count + FENCE >= manager.end){
+
+                    if (el->prev)
+                        el->prev->next = NULL;
+                    else
+                        manager.head = NULL;
+                    
+                    void * alloc = heap_malloc(count);
+
+                    if (alloc == NULL){
+
+                        if (el->prev)
+                            el->prev->next = el;
+                        else
+                            manager.head = el;
+
+                        return NULL;
+                    }
+
+                    return memcpy(alloc, el->start, el->len);
+                }
+                else{
+
+                    el->len = count;
+                    *(double*)(el->start + count) = FENCE_VAL;
+
+                    return el->start;
+                }
             }
+            else{
 
+                if (el->start + count + FENCE >= el->next){
 
+                    if (el->prev){
+                        el->prev->next = el->next;
+                        el->next->prev = el->prev;
+                    }
+                    else{
+                        manager.head = el->next;
+                        el->next->prev = NULL;
+                    }
+                    
+                    void * alloc = heap_malloc(count);
 
+                    if (alloc == NULL){
+
+                        if (el->prev){
+                            el->prev->next = el;
+                            el->next->prev = el;
+                        }
+                        else{
+                            manager.head = el;
+                            el->next->prev = el;
+                        }
+
+                        return NULL;
+                    }
+
+                    return memcpy(alloc, el->start, el->len);
+                }
+                else{
+
+                    el->len = count;
+                    *(double*)(el->start + count) = FENCE_VAL;
+
+                    return el->start;
+                }
+            }
         }
 
         el = el->next;
     }
-
 }
 
 void  heap_free(void* memblock){
