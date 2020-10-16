@@ -11,7 +11,6 @@
 #define CHUNK_CHECK 28 // length of memory to chunk truct sumcheck
 #define ADD_SIZE (2 * FENCE + CHUNK)  // addictional allocation length
 #define BEF_DATA (FENCE + CHUNK) // from pointer to first data index
-#define FENCE_VAL 0xFFFFFFFFFFFFFFFF // value for fence validation
 #define REMAINDER(ptr) ((intptr_t)(ptr) & (intptr_t)(PAGE_SIZE - 1)) // calculate remainder of page allignment
 
 heap manager = {.start = 0, .end = 0, .head = NULL};
@@ -29,7 +28,6 @@ int heap_setup(void){
 
     return 0;
 }
-
 
 void heap_clean(void){
 
@@ -77,8 +75,8 @@ void* heap_malloc(size_t size){
         manager.head->next = NULL;
         manager.head->len = size;
         manager.head->checksum = checksum((void*)manager.start);
-        *((double*)(manager.start + CHUNK)) = FENCE_VAL;
-        *((double*)(manager.start + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+        *((uint64_t*)(manager.start + CHUNK)) = UINT64_MAX;
+        *((uint64_t*)(manager.start + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
         return (void*)manager.head->start;
             
@@ -94,17 +92,17 @@ void* heap_malloc(size_t size){
             el->prev->prev = NULL;
             el->prev->next = el;
             el->prev->len = size;
-            el->prev->checksum = checksum((void*)manager.start);
-            el = (chunk)manager.start;
-            *((double*)(manager.start + CHUNK)) = FENCE_VAL;
-            *((double*)(manager.start + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+            el->prev->checksum = checksum((void*)el->prev);
+            el->checksum = checksum((void*)el);
+            *((uint64_t*)((char*)el->prev + CHUNK)) = UINT64_MAX;
+            *((uint64_t*)((char*)el->prev + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
             return (void*)el->prev->start;
         }
 
         while(el != NULL){
 
-            if (el->next == NULL && (intptr_t)(el + el->len + 2 * ADD_SIZE + size) > manager.end){
+            if (el->next == NULL && (intptr_t)((char*)el + el->len + 2 * ADD_SIZE + size) > manager.end){
 
                 if (-1 == (intptr_t)custom_sbrk(((size + ADD_SIZE - manager.end + el->start + el->len + FENCE)/PAGE_SIZE + 1) * PAGE_SIZE))
                     return NULL;
@@ -112,26 +110,28 @@ void* heap_malloc(size_t size){
                 manager.end += ((size + ADD_SIZE - manager.end + el->start + el->len + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
             }
 
-            if (el->next == NULL || (intptr_t)(el + el->len + 2 * ADD_SIZE + size) <= (intptr_t)(el->next)){
+            if (el->next == NULL || (intptr_t)((char*)el + el->len + 2 * ADD_SIZE + size) <= (intptr_t)(el->next)){
 
                 if (el->next == NULL){
 
-                    el->next = (chunk)(el + el->len + ADD_SIZE);
+                    el->next = (chunk)((char*)el + el->len + ADD_SIZE);
                     el->next->next = NULL;
                 }
                 else{
 
-                    el->next->prev = (chunk)(el + el->len + ADD_SIZE);
+                    el->next->prev = (chunk)((char*)el + el->len + ADD_SIZE);
+                    el->next->checksum = checksum((void*)el->next);
                     el->next->prev->next = el->next;
                     el->next = el->next->prev;
                 }
 
                 el->next->prev = el;
-                el->next->start = (intptr_t)(el->next + BEF_DATA);
+                el->next->start = (intptr_t)el->next + BEF_DATA;
                 el->next->len = size;
+                el->checksum = checksum((void*)el);
                 el->next->checksum = checksum((void*)el->next);
-                *((double*)(el->next + CHUNK)) = FENCE_VAL;
-                *((double*)(el->next->start + el->next->len)) = FENCE_VAL;
+                *((uint64_t*)((char*)el->next + CHUNK)) = UINT64_MAX;
+                *((uint64_t*)(el->next->start + el->next->len)) = UINT64_MAX;
 
                 return (void*)el->next->start;
 
@@ -209,7 +209,7 @@ void* heap_realloc(void* memblock, size_t size){
 
                     el->len = size;
                     el->checksum = checksum((void*)el);
-                    *((double*)(el->start + size)) = FENCE_VAL;
+                    *((uint64_t*)(el->start + size)) = UINT64_MAX;
 
                     return (void*)el->start;
                 }
@@ -221,10 +221,13 @@ void* heap_realloc(void* memblock, size_t size){
                     if (el->prev){
                         el->prev->next = el->next;
                         el->next->prev = el->prev;
+                        el->prev->checksum = checksum((void*)el->prev);
+                        el->next->checksum = checksum((void*)el->next);
                     }
                     else{
                         manager.head = el->next;
                         el->next->prev = NULL;
+                        el->next->checksum = checksum((void*)el->next);
                     }
                     
                     void * alloc = heap_malloc(size);
@@ -234,14 +237,19 @@ void* heap_realloc(void* memblock, size_t size){
                         if (el->prev){
                             el->prev->next = el;
                             el->next->prev = el;
+                            el->prev->checksum = checksum((void*)el->prev);
+                            el->next->checksum = checksum((void*)el->next);
                         }
                         else{
                             manager.head = el;
                             el->next->prev = el;
+                            el->next->checksum = checksum((void*)el->next);
                         }
 
                         return NULL;
                     }
+
+
 
                     return memcpy(alloc, (void*)el->start, el->len);
                 }
@@ -249,7 +257,7 @@ void* heap_realloc(void* memblock, size_t size){
 
                     el->len = size;
                     el->checksum = checksum((void*)el);
-                    *((double*)(el->start + size)) = FENCE_VAL;
+                    *((uint64_t*)(el->start + size)) = UINT64_MAX;
 
                     return (void*)el->start;
                 }
@@ -264,7 +272,7 @@ void* heap_realloc(void* memblock, size_t size){
 
 void  heap_free(void* memblock){
 
-    if (memblock != NULL && pointer_valid == get_pointer_type(memblock)){   //get pointer takes const void. Err may occur
+    if (memblock != NULL && pointer_valid == get_pointer_type(memblock)){
 
         chunk el = manager.head;
 
@@ -344,34 +352,31 @@ enum pointer_type_t get_pointer_type(const void* const pointer){
 
         while(el != NULL){
 
-            if ((intptr_t)pointer >= (intptr_t)el && (intptr_t)pointer < (intptr_t)el + CHUNK)
+            if ((intptr_t)pointer >= (intptr_t)el && (intptr_t)pointer < (intptr_t)((char*)el + CHUNK))
                 return pointer_control_block;
 
-            if ((intptr_t)pointer == (intptr_t)el + BEF_DATA)
+            if ((intptr_t)pointer == (intptr_t)((char*)el + BEF_DATA))
                 return pointer_valid;
 
-            if ((intptr_t)pointer > (intptr_t)el + BEF_DATA && (intptr_t)pointer < (intptr_t)el + BEF_DATA + el->len)
+            if ((intptr_t)pointer > (intptr_t)((char*)el + BEF_DATA) && (intptr_t)pointer < (intptr_t)((char*)el + BEF_DATA + el->len))
                 return pointer_inside_data_block;
 
-            if (((intptr_t)pointer >= (intptr_t)el + CHUNK && (intptr_t)pointer < (intptr_t)el + BEF_DATA) || ((intptr_t)pointer >= (intptr_t)el->start + el->len && (intptr_t)pointer < (intptr_t)el + el->len + ADD_SIZE))
+            if (((intptr_t)pointer >= (intptr_t)((char*)el + CHUNK) && (intptr_t)pointer < (intptr_t)((char*)el + BEF_DATA)) || ((intptr_t)pointer >= (intptr_t)(el->start + el->len) && (intptr_t)pointer < (intptr_t)((char*)el + el->len + ADD_SIZE)))
                 return pointer_inside_fences;
 
             if (el->next != NULL){
 
-                if ((intptr_t)pointer >= (intptr_t)el + el->len + ADD_SIZE && (intptr_t)pointer < (intptr_t)el->next)
+                if ((intptr_t)pointer >= (intptr_t)((char*)el + el->len + ADD_SIZE) && (intptr_t)pointer < (intptr_t)el->next)
                     return pointer_unallocated;
             }
             else{
 
-                if ((intptr_t)pointer >= (intptr_t)el + el->len + ADD_SIZE && (intptr_t)pointer < manager.end)
+                if ((intptr_t)pointer >= (intptr_t)((char*)el + el->len + ADD_SIZE) && (intptr_t)pointer < manager.end)
                     return pointer_unallocated;
             }
+            
+            el = el->next;
         }
-    }
-    else{
-
-        if (manager.start != manager.end)
-            return pointer_unallocated;     //I am not sure
     }
 
     return pointer_unallocated;
@@ -379,7 +384,7 @@ enum pointer_type_t get_pointer_type(const void* const pointer){
 
 int heap_validate(void){
 
-    if (manager.end <= manager.start || REMAINDER(manager.end - manager.start) != 0)
+    if (manager.end < manager.start || REMAINDER(manager.end - manager.start) != 0)
         return 2;
 
     if (manager.head != NULL){
@@ -388,11 +393,12 @@ int heap_validate(void){
 
         while (el != NULL){
 
-            if (checksum((void*)el) != el->checksum)
+            if (checksum((void*)el) != el->checksum){
                 return 3;
-
-            if (*((double*)(el + CHUNK)) != FENCE_VAL || *((double*)(el + el->len + BEF_DATA)) != FENCE_VAL)
+            }
+            else if (*((uint64_t*)((char*)el + CHUNK)) ^ UINT64_MAX || *((uint64_t*)((char*)el + el->len + BEF_DATA)) ^ UINT64_MAX){
                 return 1;
+            }
 
             el = el->next;
         }
@@ -422,8 +428,8 @@ void* heap_malloc_aligned(size_t size){
         manager.head->next = NULL;
         manager.head->len = size;
         manager.head->checksum = checksum((void*)manager.head);
-        *((double*)(manager.head + CHUNK)) = FENCE_VAL;
-        *((double*)(manager.head + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+        *((uint64_t*)(manager.head + CHUNK)) = UINT64_MAX;
+        *((uint64_t*)(manager.head + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
         return (void*)manager.head->start;
             
@@ -432,32 +438,32 @@ void* heap_malloc_aligned(size_t size){
 
         chunk el = manager.head;
 
-        if ((intptr_t)manager.head != (intptr_t)manager.start && (intptr_t)(manager.start + PAGE_SIZE + size + FENCE) <= (intptr_t)manager.head){
+        if ((intptr_t)el != (intptr_t)manager.start && (intptr_t)(manager.start + PAGE_SIZE + size + FENCE) <= (intptr_t)el){
 
-            manager.head->prev = (chunk)(manager.start + PAGE_SIZE - BEF_DATA);
-            manager.head->prev->next = manager.head;
-            manager.head = manager.head->prev;
-            manager.head->start = manager.start + PAGE_SIZE;
-            manager.head->prev = NULL;
-            manager.head->len = size;
-            manager.head->checksum = checksum((void*)manager.head);
-            *((double*)(manager.head + CHUNK)) = FENCE_VAL;
-            *((double*)(manager.head + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+            el->prev = (chunk)(manager.start + PAGE_SIZE - BEF_DATA);
+            el->prev->next = el;
+            el->prev->start = manager.start + PAGE_SIZE;
+            el->prev->prev = NULL;
+            el->prev->len = size;
+            el->prev->checksum = checksum((void*)el->prev);
+            el->checksum = checksum((void*)el);
+            *((uint64_t*)((char*)el + CHUNK)) = UINT64_MAX;
+            *((uint64_t*)((char*)el + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
-            return (void*)manager.head->start;
+            return (void*)el->prev->start;
         }
 
         while(el != NULL){
 
             if (el->next == NULL){
 
-                if ((intptr_t)(PAGE_SIZE - REMAINDER(el + ADD_SIZE + el->len)) >= BEF_DATA){
+                if ((intptr_t)(PAGE_SIZE - REMAINDER((char*)el + ADD_SIZE + el->len)) >= BEF_DATA){
 
                     if ((intptr_t)-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE))
                         return NULL;
 
                     manager.end += ((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
-                    el->next = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + PAGE_SIZE - BEF_DATA;
+                    el->next = (chunk)((char*)el + el->len + ADD_SIZE - REMAINDER((char*)el + el->len + ADD_SIZE) + PAGE_SIZE - BEF_DATA);
                 }
                 else{
 
@@ -465,16 +471,17 @@ void* heap_malloc_aligned(size_t size){
                         return NULL;
 
                     manager.end += ((size + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE;
-                    el->next = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + 2 * PAGE_SIZE - BEF_DATA;
+                    el->next = (chunk)((char*)el + el->len + ADD_SIZE - REMAINDER((char*)el + el->len + ADD_SIZE) + 2 * PAGE_SIZE - BEF_DATA);
                 }
-                
+
                 el->next->prev = el;
                 el->next->next = NULL;
                 el->next->len = size;
-                el->next->start = (intptr_t)(el->next + BEF_DATA);
+                el->next->start = (intptr_t)el->next + BEF_DATA;
+                el->checksum = checksum((void*)el);
                 el->next->checksum = checksum((void*)el->next);
-                *((double*)(el->next + CHUNK)) = FENCE_VAL;
-                *((double*)(el->next + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+                *((uint64_t*)((char*)el->next + CHUNK)) = UINT64_MAX;
+                *((uint64_t*)((char*)el->next + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
                 return (void*)el->next->start;
             }
@@ -482,20 +489,22 @@ void* heap_malloc_aligned(size_t size){
 
                 int x = 2;
 
-                if (PAGE_SIZE - REMAINDER(el + ADD_SIZE + el->len) >= BEF_DATA)
+                if (PAGE_SIZE - REMAINDER((char*)el + ADD_SIZE + el->len) >= BEF_DATA)
                     x = 1;
 
-                if ((intptr_t)(el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + 2 * PAGE_SIZE + size + FENCE) <= (intptr_t)el->next){
+                if ((intptr_t)((char*)el + el->len + ADD_SIZE - REMAINDER((char*)el + el->len + ADD_SIZE) + 2 * PAGE_SIZE + size + FENCE) <= (intptr_t)el->next){
 
-                    el->next->prev = el + el->len + ADD_SIZE - REMAINDER(el + el->len + ADD_SIZE) + x * PAGE_SIZE - BEF_DATA;
+                    el->next->prev = (chunk)((char*)el + el->len + ADD_SIZE - REMAINDER((char*)el + el->len + ADD_SIZE) + x * PAGE_SIZE - BEF_DATA);
+                    el->next->checksum = checksum((void*)el->next);
                     el->next->prev->next = el->next;
                     el->next = el->next->prev;
                     el->next->prev = el;
                     el->next->len = size;
-                    el->next->start = (intptr_t)(el->next + BEF_DATA);
+                    el->next->start = (intptr_t)el->next + BEF_DATA;
                     el->next->checksum = checksum((void*)el->next);
-                    *((double*)(el->next + CHUNK)) = FENCE_VAL;
-                    *((double*)(el->next + size + ADD_SIZE - CHUNK)) = FENCE_VAL;
+                    el->checksum = checksum((void*)el);
+                    *((uint64_t*)((char*)el->next + CHUNK)) = UINT64_MAX;
+                    *((uint64_t*)((char*)el->next + size + ADD_SIZE - FENCE)) = UINT64_MAX;
 
                     return (void*)el->next->start;
                 }
@@ -549,19 +558,25 @@ void* heap_realloc_aligned(void* memblock, size_t size){
 
                 if ((intptr_t)(el->start + size + FENCE) > manager.end){
 
-                    if (el->prev)
+                    if (el->prev){
                         el->prev->next = NULL;
-                    else
+                        el->prev->checksum = checksum((void*)el->prev);
+                    }
+                    else{
                         manager.head = NULL;
-                    
+                    }
+
                     void * alloc = heap_malloc_aligned(size);
 
                     if (alloc == NULL){
 
-                        if (el->prev)
+                        if (el->prev){
                             el->prev->next = el;
-                        else
+                            el->prev->checksum = checksum((void*)el->prev);
+                        }
+                        else{
                             manager.head = el;
+                        }
 
                         return NULL;
                     }
@@ -572,7 +587,7 @@ void* heap_realloc_aligned(void* memblock, size_t size){
 
                     el->len = size;
                     el->checksum = checksum((void*)el);
-                    *((double*)(el->start + size)) = FENCE_VAL;
+                    *((uint64_t*)(el->start + size)) = UINT64_MAX;
 
                     return (void*)el->start;
                 }
@@ -584,10 +599,13 @@ void* heap_realloc_aligned(void* memblock, size_t size){
                     if (el->prev){
                         el->prev->next = el->next;
                         el->next->prev = el->prev;
+                        el->prev->checksum = checksum((void*)el->prev);
+                        el->next->checksum = checksum((void*)el->next);
                     }
                     else{
                         manager.head = el->next;
                         el->next->prev = NULL;
+                        el->next->checksum = checksum((void*)el->next);
                     }
                     
                     void * alloc = heap_malloc_aligned(size);
@@ -597,10 +615,13 @@ void* heap_realloc_aligned(void* memblock, size_t size){
                         if (el->prev){
                             el->prev->next = el;
                             el->next->prev = el;
+                            el->prev->checksum = checksum((void*)el->prev);
+                            el->next->checksum = checksum((void*)el->next);
                         }
                         else{
                             manager.head = el;
                             el->next->prev = el;
+                            el->next->checksum = checksum((void*)el->next);
                         }
 
                         return NULL;
@@ -612,7 +633,7 @@ void* heap_realloc_aligned(void* memblock, size_t size){
 
                     el->len = size;
                     el->checksum = checksum((void*)el);
-                    *((double*)(el->start + size)) = FENCE_VAL;
+                    *((uint64_t*)(el->start + size)) = UINT64_MAX;
 
                     return (void*)el->start;
                 }
