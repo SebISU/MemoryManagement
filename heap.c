@@ -9,6 +9,7 @@
 #define PAGE_SIZE 4096 // page length in bytes
 #define FENCE 8 // fence length in bytes
 #define CHUNK 32    //struct chunk size
+#define DEB_CHUNK (CHUNK + 8)   //size of struct chunk with file name and line
 #define CHUNK_CHECK 28 // length of memory to chunk truct sumcheck
 #define ADD_SIZE (2 * FENCE + CHUNK)  // addictional allocation length
 #define BEF_DATA (FENCE + CHUNK) // from pointer to first data index
