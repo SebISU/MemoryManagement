@@ -9,6 +9,8 @@ struct chunk_t{
 	intptr_t start;
 	struct chunk_t * next;
 	struct chunk_t * prev;
+	const char* filename;
+	int line;
 	unsigned len;
 	unsigned short checksum;
 
@@ -48,6 +50,11 @@ int heap_validate(void);
 void* heap_malloc_aligned(size_t count);
 void* heap_calloc_aligned(size_t number, size_t size);
 void* heap_realloc_aligned(void* memblock, size_t size);
-
+void* heap_malloc_debug(size_t count, int fileline, const char* filename);
+void* heap_calloc_debug(size_t number, size_t size, int fileline, const char* filename);
+void* heap_realloc_debug(void* memblock, size_t size, int fileline, const char* filename);
+void* heap_malloc_aligned_debug(size_t count, int fileline, const char* filename);
+void* heap_calloc_aligned_debug(size_t number, size_t size, int fileline, const char* filename);
+void* heap_realloc_aligned_debug(void* memblock, size_t size, int fileline, const char* filename);
 
 #endif
