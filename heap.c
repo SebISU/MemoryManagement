@@ -193,8 +193,8 @@ void* heap_realloc(void* memblock, size_t size){
 
         if (((chunk)((intptr_t)memblock - BEF_DATA))->next == NULL && manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE >= PAGE_SIZE){
 
-            custom_sbrk(-((manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE));        //not sure -1?
-            manager.end -= (manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE;         //notsure -1?
+            custom_sbrk(-((manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE));
+            manager.end -= (manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE;
         }
 
         return memblock;
@@ -488,22 +488,15 @@ void* heap_malloc_aligned(size_t size){
 
             if (el->next == NULL){
 
-                if ((intptr_t)(PAGE_SIZE - REMAINDER((uint8_t*)el + ADD_SIZE + el->len)) >= BEF_DATA){
+                int x = 2;
 
-                    if (-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE))
-                        return NULL;
+                if ((intptr_t)(PAGE_SIZE - REMAINDER((uint8_t*)el + ADD_SIZE + el->len)) >= BEF_DATA){  // less code, if doesn't work go back to the previous version
 
-                    manager.end += ((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
-                    el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + PAGE_SIZE - BEF_DATA);
+                    x = 1;
                 }
-                else{
 
-                    if ((intptr_t)-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE))
-                        return NULL;
-
-                    manager.end += ((size + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE;
-                    el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + 2 * PAGE_SIZE - BEF_DATA);
-                }
+                manager.end += ((size + FENCE - 1)/PAGE_SIZE + x) * PAGE_SIZE;
+                el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + x * PAGE_SIZE - BEF_DATA);
 
                 el->next->prev = el;
                 el->next->next = NULL;
