@@ -71,7 +71,7 @@ void* heap_malloc(size_t size){
 
     if (manager.head == NULL){
 
-        if ((intptr_t)(manager.start + size + ADD_SIZE) > (intptr_t)manager.end){
+        if ((intptr_t)(manager.start + size + ADD_SIZE) > manager.end){
             
             if (-1 == (intptr_t)custom_sbrk((size + ADD_SIZE)/PAGE_SIZE * PAGE_SIZE))
                 return NULL;
@@ -124,7 +124,7 @@ void* heap_malloc(size_t size){
                 if (-1 == (intptr_t)custom_sbrk(((size + ADD_SIZE - manager.end + el->start + el->len + FENCE + x)/PAGE_SIZE + 1) * PAGE_SIZE))
                     return NULL;
 
-                manager.end += ((size + ADD_SIZE - manager.end + el->start + el->len + FENCE + x - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
+                manager.end += ((size + ADD_SIZE - manager.end + el->start + el->len + FENCE + x)/PAGE_SIZE + 1) * PAGE_SIZE;   //fucking error -1
             }
 
             if (el->next == NULL || (intptr_t)((uint8_t*)el + el->len + 2 * ADD_SIZE + size + x) <= (intptr_t)(el->next)){
@@ -446,7 +446,7 @@ void* heap_malloc_aligned(size_t size){
 
         if ((intptr_t)(manager.start + PAGE_SIZE + size + FENCE) > manager.end){
             
-            if ((intptr_t)-1 == (intptr_t)custom_sbrk((PAGE_SIZE + size + FENCE - 1)/PAGE_SIZE * PAGE_SIZE))
+            if (-1 == (intptr_t)custom_sbrk((PAGE_SIZE + size + FENCE - 1)/PAGE_SIZE * PAGE_SIZE))
                 return NULL;
             
             manager.end += (PAGE_SIZE + size + FENCE - 1)/PAGE_SIZE * PAGE_SIZE;
@@ -490,7 +490,7 @@ void* heap_malloc_aligned(size_t size){
 
                 if ((intptr_t)(PAGE_SIZE - REMAINDER((uint8_t*)el + ADD_SIZE + el->len)) >= BEF_DATA){
 
-                    if ((intptr_t)-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE))
+                    if (-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE))
                         return NULL;
 
                     manager.end += ((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
@@ -580,8 +580,8 @@ void* heap_realloc_aligned(void* memblock, size_t size){
 
         if (((chunk)((intptr_t)memblock - BEF_DATA))->next == NULL && manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE >= PAGE_SIZE){
 
-            custom_sbrk(-((manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE));        //not sure
-            manager.end -= (manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE;         //not sure
+            custom_sbrk(-((manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE));
+            manager.end -= (manager.end - (intptr_t)memblock - ((chunk)((uint8_t*)memblock - BEF_DATA))->len - FENCE)/PAGE_SIZE * PAGE_SIZE;
         }
 
         return memblock;
