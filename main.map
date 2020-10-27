@@ -83,8 +83,18 @@ Discarded input sections
  .group         0x0000000000000000        0xc build-dir/heap.c.o
  .group         0x0000000000000000        0xc build-dir/heap.c.o
  .group         0x0000000000000000        0xc build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/heap.c.o
  .note.GNU-stack
                 0x0000000000000000        0x0 build-dir/heap.c.o
+ .group         0x0000000000000000        0xc build-dir/main.c.o
+ .group         0x0000000000000000        0xc build-dir/main.c.o
+ .group         0x0000000000000000        0xc build-dir/main.c.o
+ .group         0x0000000000000000        0xc build-dir/main.c.o
+ .group         0x0000000000000000        0xc build-dir/main.c.o
  .group         0x0000000000000000        0xc build-dir/main.c.o
  .group         0x0000000000000000        0xc build-dir/main.c.o
  .group         0x0000000000000000        0xc build-dir/main.c.o
@@ -186,6 +196,11 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 build-dir/main.c.o
  .debug_macro   0x0000000000000000       0x16 build-dir/main.c.o
  .debug_macro   0x0000000000000000      0x29f build-dir/main.c.o
+ .debug_macro   0x0000000000000000       0x16 build-dir/main.c.o
+ .debug_macro   0x0000000000000000       0xca build-dir/main.c.o
+ .debug_macro   0x0000000000000000       0x5e build-dir/main.c.o
+ .debug_macro   0x0000000000000000       0x94 build-dir/main.c.o
+ .debug_macro   0x0000000000000000       0xbb build-dir/main.c.o
  .note.GNU-stack
                 0x0000000000000000        0x0 build-dir/main.c.o
  .group         0x0000000000000000        0xc build-dir/unit_helper_v2.c.o
@@ -479,6 +494,11 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x58 build-dir/unit_test_v2.c.o
  .debug_macro   0x0000000000000000      0x100 build-dir/unit_test_v2.c.o
  .debug_macro   0x0000000000000000       0x11 build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000000000       0x16 build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000000000       0xca build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000000000       0x5e build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000000000       0x94 build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000000000       0xbb build-dir/unit_test_v2.c.o
  .debug_macro   0x0000000000000000       0x6a build-dir/unit_test_v2.c.o
  .debug_macro   0x0000000000000000      0x190 build-dir/unit_test_v2.c.o
  .debug_macro   0x0000000000000000       0x4c build-dir/unit_test_v2.c.o
@@ -880,61 +900,61 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
  *(.gnu.hash)
  .gnu.hash      0x0000000000000308       0x34 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.dynsym         0x0000000000000340      0x5e8
+.dynsym         0x0000000000000340      0x600
  *(.dynsym)
- .dynsym        0x0000000000000340      0x5e8 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .dynsym        0x0000000000000340      0x600 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.dynstr         0x0000000000000928      0x2ad
+.dynstr         0x0000000000000940      0x2c7
  *(.dynstr)
- .dynstr        0x0000000000000928      0x2ad /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .dynstr        0x0000000000000940      0x2c7 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.gnu.version    0x0000000000000bd6       0x7e
+.gnu.version    0x0000000000000c08       0x80
  *(.gnu.version)
- .gnu.version   0x0000000000000bd6       0x7e /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .gnu.version   0x0000000000000c08       0x80 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.gnu.version_d  0x0000000000000c58        0x0
+.gnu.version_d  0x0000000000000c88        0x0
  *(.gnu.version_d)
  .gnu.version_d
-                0x0000000000000c58        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000000c88        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.gnu.version_r  0x0000000000000c58       0x60
+.gnu.version_r  0x0000000000000c88       0x60
  *(.gnu.version_r)
  .gnu.version_r
-                0x0000000000000c58       0x60 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000000c88       0x60 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.rela.dyn       0x0000000000000cb8     0x1398
+.rela.dyn       0x0000000000000ce8     0x1398
  *(.rela.init)
  *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
- .rela.text     0x0000000000000cb8        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.text     0x0000000000000ce8        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  *(.rela.fini)
  *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
  *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
  .rela.data.rel.ro
-                0x0000000000000cb8        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000000ce8        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  .rela.data.rel.local
-                0x0000000000000cb8      0x558 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
- .rela.data     0x0000000000001210      0xd08 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000000ce8      0x558 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.data     0x0000000000001240      0xd08 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
  *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
  *(.rela.ctors)
  *(.rela.dtors)
  *(.rela.got)
- .rela.got      0x0000000000001f18       0x78 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.got      0x0000000000001f48       0x78 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
- .rela.bss      0x0000000000001f90       0x48 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.bss      0x0000000000001fc0       0x48 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  *(.rela.ldata .rela.ldata.* .rela.gnu.linkonce.l.*)
  *(.rela.lbss .rela.lbss.* .rela.gnu.linkonce.lb.*)
  *(.rela.lrodata .rela.lrodata.* .rela.gnu.linkonce.lr.*)
  *(.rela.ifunc)
- .rela.ifunc    0x0000000000001fd8        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.ifunc    0x0000000000002008        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  .rela.fini_array
-                0x0000000000001fd8       0x30 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000002008       0x30 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  .rela.init_array
-                0x0000000000002008       0x48 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x0000000000002038       0x48 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
 
-.rela.plt       0x0000000000002050      0x510
+.rela.plt       0x0000000000002080      0x528
  *(.rela.plt)
- .rela.plt      0x0000000000002050      0x510 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .rela.plt      0x0000000000002080      0x528 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
                 [!provide]                        PROVIDE (__rela_iplt_start = .)
  *(.rela.iplt)
                 [!provide]                        PROVIDE (__rela_iplt_end = .)
@@ -946,9 +966,9 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
                 0x0000000000003000                _init
  .init          0x0000000000003012        0x5 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
 
-.plt            0x0000000000003020      0x370
+.plt            0x0000000000003020      0x380
  *(.plt)
- .plt           0x0000000000003020      0x370 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .plt           0x0000000000003020      0x380 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
                 0x0000000000003030                raise@@GLIBC_2.2.5
                 0x0000000000003040                free@@GLIBC_2.2.5
                 0x0000000000003050                putchar@@GLIBC_2.2.5
@@ -961,294 +981,295 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
                 0x00000000000030c0                fcntl@@GLIBC_2.2.5
                 0x00000000000030d0                fclose@@GLIBC_2.2.5
                 0x00000000000030e0                strlen@@GLIBC_2.2.5
-                0x00000000000030f0                printf@@GLIBC_2.2.5
-                0x0000000000003100                pthread_mutex_destroy@@GLIBC_2.2.5
-                0x0000000000003110                snprintf@@GLIBC_2.2.5
-                0x0000000000003120                pthread_mutexattr_init@@GLIBC_2.2.5
-                0x0000000000003130                strrchr@@GLIBC_2.2.5
-                0x0000000000003140                __assert_fail@@GLIBC_2.2.5
-                0x0000000000003150                memset@@GLIBC_2.2.5
-                0x0000000000003160                fputc@@GLIBC_2.2.5
-                0x0000000000003170                srand@@GLIBC_2.2.5
-                0x0000000000003180                memcmp@@GLIBC_2.2.5
-                0x0000000000003190                _setjmp@@GLIBC_2.2.5
-                0x00000000000031a0                getchar@@GLIBC_2.2.5
-                0x00000000000031b0                signal@@GLIBC_2.2.5
-                0x00000000000031c0                fprintf@@GLIBC_2.2.5
-                0x00000000000031d0                strtol@@GLIBC_2.2.5
-                0x00000000000031e0                memcpy@@GLIBC_2.14
-                0x00000000000031f0                time@@GLIBC_2.2.5
-                0x0000000000003200                pthread_mutex_unlock@@GLIBC_2.2.5
-                0x0000000000003210                pthread_mutexattr_settype@@GLIBC_2.2.5
-                0x0000000000003220                malloc@@GLIBC_2.2.5
-                0x0000000000003230                fflush@@GLIBC_2.2.5
-                0x0000000000003240                ungetc@@GLIBC_2.2.5
-                0x0000000000003250                vprintf@@GLIBC_2.2.5
-                0x0000000000003260                setrlimit@@GLIBC_2.2.5
-                0x0000000000003270                strsignal@@GLIBC_2.2.5
-                0x0000000000003280                realloc@@GLIBC_2.2.5
-                0x0000000000003290                setvbuf@@GLIBC_2.2.5
-                0x00000000000032a0                longjmp@@GLIBC_2.2.5
-                0x00000000000032b0                memmove@@GLIBC_2.2.5
-                0x00000000000032c0                fopen@@GLIBC_2.2.5
-                0x00000000000032d0                perror@@GLIBC_2.2.5
-                0x00000000000032e0                strtok@@GLIBC_2.2.5
-                0x00000000000032f0                pthread_join@@GLIBC_2.2.5
-                0x0000000000003300                exit@@GLIBC_2.2.5
-                0x0000000000003310                fwrite@@GLIBC_2.2.5
-                0x0000000000003320                getrlimit@@GLIBC_2.2.5
-                0x0000000000003330                strdup@@GLIBC_2.2.5
-                0x0000000000003340                strerror@@GLIBC_2.2.5
-                0x0000000000003350                pthread_mutex_init@@GLIBC_2.2.5
-                0x0000000000003360                pthread_mutex_lock@@GLIBC_2.2.5
-                0x0000000000003370                rand@@GLIBC_2.2.5
-                0x0000000000003380                __ctype_b_loc@@GLIBC_2.3
+                0x00000000000030f0                pthread_mutexattr_destroy@@GLIBC_2.2.5
+                0x0000000000003100                printf@@GLIBC_2.2.5
+                0x0000000000003110                pthread_mutex_destroy@@GLIBC_2.2.5
+                0x0000000000003120                snprintf@@GLIBC_2.2.5
+                0x0000000000003130                pthread_mutexattr_init@@GLIBC_2.2.5
+                0x0000000000003140                strrchr@@GLIBC_2.2.5
+                0x0000000000003150                __assert_fail@@GLIBC_2.2.5
+                0x0000000000003160                memset@@GLIBC_2.2.5
+                0x0000000000003170                fputc@@GLIBC_2.2.5
+                0x0000000000003180                srand@@GLIBC_2.2.5
+                0x0000000000003190                memcmp@@GLIBC_2.2.5
+                0x00000000000031a0                _setjmp@@GLIBC_2.2.5
+                0x00000000000031b0                getchar@@GLIBC_2.2.5
+                0x00000000000031c0                signal@@GLIBC_2.2.5
+                0x00000000000031d0                fprintf@@GLIBC_2.2.5
+                0x00000000000031e0                strtol@@GLIBC_2.2.5
+                0x00000000000031f0                memcpy@@GLIBC_2.14
+                0x0000000000003200                time@@GLIBC_2.2.5
+                0x0000000000003210                pthread_mutex_unlock@@GLIBC_2.2.5
+                0x0000000000003220                pthread_mutexattr_settype@@GLIBC_2.2.5
+                0x0000000000003230                malloc@@GLIBC_2.2.5
+                0x0000000000003240                fflush@@GLIBC_2.2.5
+                0x0000000000003250                ungetc@@GLIBC_2.2.5
+                0x0000000000003260                vprintf@@GLIBC_2.2.5
+                0x0000000000003270                setrlimit@@GLIBC_2.2.5
+                0x0000000000003280                strsignal@@GLIBC_2.2.5
+                0x0000000000003290                realloc@@GLIBC_2.2.5
+                0x00000000000032a0                setvbuf@@GLIBC_2.2.5
+                0x00000000000032b0                longjmp@@GLIBC_2.2.5
+                0x00000000000032c0                memmove@@GLIBC_2.2.5
+                0x00000000000032d0                fopen@@GLIBC_2.2.5
+                0x00000000000032e0                perror@@GLIBC_2.2.5
+                0x00000000000032f0                strtok@@GLIBC_2.2.5
+                0x0000000000003300                pthread_join@@GLIBC_2.2.5
+                0x0000000000003310                exit@@GLIBC_2.2.5
+                0x0000000000003320                fwrite@@GLIBC_2.2.5
+                0x0000000000003330                getrlimit@@GLIBC_2.2.5
+                0x0000000000003340                strdup@@GLIBC_2.2.5
+                0x0000000000003350                strerror@@GLIBC_2.2.5
+                0x0000000000003360                pthread_mutex_init@@GLIBC_2.2.5
+                0x0000000000003370                pthread_mutex_lock@@GLIBC_2.2.5
+                0x0000000000003380                rand@@GLIBC_2.2.5
+                0x0000000000003390                __ctype_b_loc@@GLIBC_2.3
  *(.iplt)
 
-.plt.got        0x0000000000003390        0x8
+.plt.got        0x00000000000033a0        0x8
  *(.plt.got)
- .plt.got       0x0000000000003390        0x8 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
-                0x0000000000003390                __cxa_finalize@@GLIBC_2.2.5
+ .plt.got       0x00000000000033a0        0x8 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x00000000000033a0                __cxa_finalize@@GLIBC_2.2.5
 
 .plt.sec
  *(.plt.sec)
 
-.text           0x00000000000033a0    0x2fe11
+.text           0x00000000000033b0    0x302f1
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  *(.text.startup .text.startup.*)
  *(.text.hot .text.hot.*)
  *(.text .stub .text.* .gnu.linkonce.t.*)
- .text          0x00000000000033a0       0x2b /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
-                0x00000000000033a0                _start
- .text          0x00000000000033cb        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crti.o
- *fill*         0x00000000000033cb        0x5 
- .text          0x00000000000033d0       0xb5 /usr/lib/gcc/x86_64-linux-gnu/8/crtbeginS.o
- .text          0x0000000000003485     0x1fdf build-dir/heap.c.o
-                0x0000000000003485                heap_setup
-                0x00000000000034d7                heap_clean
-                0x000000000000351b                checksum
-                0x000000000000358e                heap_malloc
-                0x0000000000003aef                heap_calloc
-                0x0000000000003b41                heap_realloc
-                0x0000000000003fef                heap_free
-                0x000000000000429d                heap_get_largest_used_block_size
-                0x0000000000004317                get_pointer_type
-                0x0000000000004566                heap_validate
-                0x0000000000004633                heap_malloc_aligned
-                0x0000000000004cca                heap_calloc_aligned
-                0x0000000000004d1c                heap_realloc_aligned
-                0x00000000000051ca                heap_malloc_debug
-                0x000000000000523a                heap_calloc_debug
-                0x000000000000529c                heap_realloc_debug
-                0x0000000000005317                heap_malloc_aligned_debug
-                0x0000000000005387                heap_calloc_aligned_debug
-                0x00000000000053e9                heap_realloc_aligned_debug
- .text          0x0000000000005464        0xb build-dir/main.c.o
-                0x0000000000005464                main
- .text          0x000000000000546f      0xa75 build-dir/unit_helper_v2.c.o
-                0x000000000000546f                unit_test_init
-                0x00000000000054df                test_title
-                0x0000000000005512                test_start
-                0x0000000000005595                test_summary
-                0x000000000000563e                test_result_internal
-                0x00000000000058b6                test_terminate_session
-                0x00000000000058d3                test_get_session_termination_flag
-                0x00000000000058df                test_set_session_leaks
-                0x00000000000058f2                test_single_has_failed
-                0x0000000000005906                test_session_get_fail_count
-                0x0000000000005912                mem_find_first_difference
-                0x00000000000059b8                mem_get_byte
-                0x00000000000059dd                mem_dump_diff
-                0x0000000000005bd6                mem_compare
-                0x0000000000005c33                test_internal_error
-                0x0000000000005cb6                test_limit_init
-                0x0000000000005cd3                test_memory_limit_setup
-                0x0000000000005d7e                test_memory_limit_restore
-                0x0000000000005d85                test_signal_handler
-                0x0000000000005dea                test_file_write_limit_setup
-                0x0000000000005e93                test_file_write_limit_restore
- .text          0x0000000000005ee4    0x29578 build-dir/unit_test_v2.c.o
-                0x0000000000005ee4                heap_malloc_test_thread
-                0x000000000000655f                heap_alloc_aligned_test_thread
-                0x0000000000006bda                heap_alloc_ultimate_test_thread
-                0x0000000000007641                UTEST1
-                0x00000000000077d7                UTEST2
-                0x000000000000796d                UTEST3
-                0x0000000000007b59                UTEST4
-                0x0000000000007e78                UTEST5
-                0x0000000000008231                UTEST6
-                0x000000000000854f                UTEST7
-                0x0000000000008aee                UTEST8
-                0x000000000000908d                UTEST9
-                0x000000000000957a                UTEST10
-                0x0000000000009aa9                UTEST11
-                0x000000000000a122                UTEST12
-                0x000000000000a79b                UTEST13
-                0x000000000000ae77                UTEST14
-                0x000000000000b012                UTEST15
-                0x000000000000b1ad                UTEST16
-                0x000000000000b348                UTEST17
-                0x000000000000b4e3                UTEST18
-                0x000000000000b67e                UTEST19
-                0x000000000000b96b                UTEST20
-                0x000000000000bc58                UTEST21
-                0x000000000000c0df                UTEST22
-                0x000000000000c566                UTEST23
-                0x000000000000c8f0                UTEST24
-                0x000000000000d02b                UTEST25
-                0x000000000000d763                UTEST26
-                0x000000000000de33                UTEST27
-                0x000000000000e5cc                UTEST28
-                0x000000000000eddb                UTEST29
-                0x000000000000f64f                UTEST30
-                0x000000000000f70c                UTEST31
-                0x000000000000f8ae                UTEST32
-                0x000000000000fbb2                UTEST33
-                0x000000000001010e                UTEST34
-                0x0000000000010478                UTEST35
-                0x0000000000010684                UTEST36
-                0x0000000000010ba0                UTEST37
-                0x000000000001104a                UTEST38
-                0x000000000001140b                UTEST39
-                0x00000000000119ad                UTEST40
-                0x000000000001203a                UTEST41
-                0x00000000000127fa                UTEST42
-                0x0000000000012f71                UTEST43
-                0x000000000001381b                UTEST44
-                0x000000000001408b                UTEST45
-                0x0000000000014a2e                UTEST46
-                0x0000000000015195                UTEST47
-                0x0000000000015a8f                UTEST48
-                0x0000000000016389                UTEST49
-                0x0000000000016d31                UTEST50
-                0x0000000000016dde                UTEST51
-                0x0000000000016f79                UTEST52
-                0x000000000001716b                UTEST53
-                0x000000000001758a                UTEST54
-                0x00000000000178e7                UTEST55
-                0x0000000000017b58                UTEST56
-                0x0000000000017eb5                UTEST57
-                0x0000000000018212                UTEST58
-                0x00000000000185a1                UTEST59
-                0x0000000000018798                UTEST60
-                0x0000000000018bc1                UTEST61
-                0x0000000000018f28                UTEST62
-                0x000000000001919e                UTEST63
-                0x0000000000019505                UTEST64
-                0x00000000000195af                UTEST65
-                0x00000000000197a8                UTEST66
-                0x0000000000019a58                UTEST67
-                0x0000000000019d08                UTEST68
-                0x000000000001a094                UTEST69
-                0x000000000001a481                UTEST70
-                0x000000000001a88c                UTEST71
-                0x000000000001ad27                UTEST72
-                0x000000000001aec2                UTEST73
-                0x000000000001af73                UTEST74
-                0x000000000001b1a9                UTEST75
-                0x000000000001b48a                UTEST76
-                0x000000000001b81e                UTEST77
-                0x000000000001be35                UTEST78
-                0x000000000001c492                UTEST79
-                0x000000000001c9cb                UTEST80
-                0x000000000001cf15                UTEST81
-                0x000000000001d5e5                UTEST82
-                0x000000000001dc3c                UTEST83
-                0x000000000001e3b2                UTEST84
-                0x000000000001eb22                UTEST85
-                0x000000000001f24d                UTEST86
-                0x000000000001f876                UTEST87
-                0x000000000001fa0c                UTEST88
-                0x000000000001fb08                UTEST89
-                0x000000000001fd90                UTEST90
-                0x000000000002014d                UTEST91
-                0x000000000002050a                UTEST92
-                0x000000000002082a                UTEST93
-                0x0000000000020dcf                UTEST94
-                0x0000000000021374                UTEST95
-                0x0000000000021919                UTEST96
-                0x0000000000021ef2                UTEST97
-                0x0000000000022486                UTEST98
-                0x0000000000022993                UTEST99
-                0x0000000000022de6                UTEST100
-                0x0000000000023421                UTEST101
-                0x0000000000023a5c                UTEST102
-                0x0000000000023bf7                UTEST103
-                0x0000000000023d92                UTEST104
-                0x0000000000023f2d                UTEST105
-                0x00000000000240c8                UTEST106
-                0x0000000000024263                UTEST107
-                0x0000000000024552                UTEST108
-                0x0000000000024841                UTEST109
-                0x0000000000024d17                UTEST110
-                0x00000000000251ed                UTEST111
-                0x00000000000255bc                UTEST112
-                0x0000000000025cfd                UTEST113
-                0x000000000002643e                UTEST114
-                0x0000000000026b7c                UTEST115
-                0x0000000000027169                UTEST116
-                0x00000000000276d9                UTEST117
-                0x0000000000027c49                UTEST118
-                0x0000000000028460                UTEST119
-                0x0000000000028c77                UTEST120
-                0x0000000000028e12                UTEST121
-                0x0000000000028ec8                UTEST122
-                0x0000000000029100                UTEST123
-                0x00000000000293e3                UTEST124
-                0x0000000000029779                UTEST125
-                0x0000000000029d85                UTEST126
-                0x000000000002a380                UTEST127
-                0x000000000002a89c                UTEST128
-                0x000000000002ade6                UTEST129
-                0x000000000002b4bd                UTEST130
-                0x000000000002b9d9                UTEST131
-                0x000000000002c163                UTEST132
-                0x000000000002c7f0                UTEST133
-                0x000000000002cea3                UTEST134
-                0x000000000002d424                UTEST135
-                0x000000000002df9d                UTEST136
-                0x000000000002eb90                UTEST137
-                0x000000000002ed54                UTEST138
-                0x000000000002ef18                UTEST139
-                0x000000000002f0e5                __wrap_main
- .text          0x000000000002f45c     0x36a6 build-dir/rdebug.c.o
-                0x000000000002f917                print_source_location
-                0x000000000002fc6e                _rldebug_heap_wrapper
-                0x0000000000030efa                _rldebug_str_wrapper
-                0x000000000003180b                _rldebug_io_wrapper
-                0x0000000000031b92                _rldebug_stdlib_noreturn_wrapper
-                0x0000000000031cbb                rldebug_show_leaked_resources
-                0x0000000000032247                rldebug_heap_get_leak_size
-                0x0000000000032293                rldebug_get_block_size
-                0x0000000000032799                rldebug_reset_limits
-                0x000000000003282b                rldebug_heap_set_global_limit
-                0x0000000000032867                rldebug_heap_disable_all_functions
-                0x000000000003287a                rldebug_heap_set_function_singleshot_limit
-                0x00000000000328d9                rldebug_heap_set_function_cumulative_limit
-                0x0000000000032938                rldebug_set_function_success_limit
-                0x0000000000032997                rldebug_set_reported_severity_level
-                0x00000000000329aa                remove_single_newline
-                0x0000000000032a2e                rdebug_call_main
- .text          0x0000000000032b02      0x640 build-dir/memmanager.c.o
-                0x0000000000032b02                memory_init
-                0x0000000000032dd4                memory_check
-                0x0000000000032f05                custom_sbrk_check_fences_integrity
-                0x0000000000032f79                custom_sbrk_get_reserved_memory
-                0x0000000000032fb7                custom_sbrk
- *fill*         0x0000000000033142        0xe 
- .text          0x0000000000033150       0x61 //usr/lib/x86_64-linux-gnu/libc_nonshared.a(elf-init.oS)
-                0x0000000000033150                __libc_csu_init
-                0x00000000000331b0                __libc_csu_fini
- .text          0x00000000000331b1        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/crtendS.o
- .text          0x00000000000331b1        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
+ .text          0x00000000000033b0       0x2b /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+                0x00000000000033b0                _start
+ .text          0x00000000000033db        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crti.o
+ *fill*         0x00000000000033db        0x5 
+ .text          0x00000000000033e0       0xb5 /usr/lib/gcc/x86_64-linux-gnu/8/crtbeginS.o
+ .text          0x0000000000003495     0x24c5 build-dir/heap.c.o
+                0x0000000000003495                heap_setup
+                0x000000000000354a                heap_clean
+                0x00000000000035a6                checksum
+                0x0000000000003641                heap_malloc
+                0x0000000000003c02                heap_calloc
+                0x0000000000003c80                heap_realloc
+                0x00000000000041d5                heap_free
+                0x00000000000044a4                heap_get_largest_used_block_size
+                0x0000000000004536                get_pointer_type
+                0x0000000000004815                heap_validate
+                0x0000000000004926                heap_malloc_aligned
+                0x0000000000005035                heap_calloc_aligned
+                0x00000000000050b3                heap_realloc_aligned
+                0x0000000000005608                heap_malloc_debug
+                0x0000000000005690                heap_calloc_debug
+                0x000000000000571e                heap_realloc_debug
+                0x00000000000057b1                heap_malloc_aligned_debug
+                0x0000000000005839                heap_calloc_aligned_debug
+                0x00000000000058c7                heap_realloc_aligned_debug
+ .text          0x000000000000595a        0xb build-dir/main.c.o
+                0x000000000000595a                main
+ .text          0x0000000000005965      0xa75 build-dir/unit_helper_v2.c.o
+                0x0000000000005965                unit_test_init
+                0x00000000000059d5                test_title
+                0x0000000000005a08                test_start
+                0x0000000000005a8b                test_summary
+                0x0000000000005b34                test_result_internal
+                0x0000000000005dac                test_terminate_session
+                0x0000000000005dc9                test_get_session_termination_flag
+                0x0000000000005dd5                test_set_session_leaks
+                0x0000000000005de8                test_single_has_failed
+                0x0000000000005dfc                test_session_get_fail_count
+                0x0000000000005e08                mem_find_first_difference
+                0x0000000000005eae                mem_get_byte
+                0x0000000000005ed3                mem_dump_diff
+                0x00000000000060cc                mem_compare
+                0x0000000000006129                test_internal_error
+                0x00000000000061ac                test_limit_init
+                0x00000000000061c9                test_memory_limit_setup
+                0x0000000000006274                test_memory_limit_restore
+                0x000000000000627b                test_signal_handler
+                0x00000000000062e0                test_file_write_limit_setup
+                0x0000000000006389                test_file_write_limit_restore
+ .text          0x00000000000063da    0x29578 build-dir/unit_test_v2.c.o
+                0x00000000000063da                heap_malloc_test_thread
+                0x0000000000006a55                heap_alloc_aligned_test_thread
+                0x00000000000070d0                heap_alloc_ultimate_test_thread
+                0x0000000000007b37                UTEST1
+                0x0000000000007ccd                UTEST2
+                0x0000000000007e63                UTEST3
+                0x000000000000804f                UTEST4
+                0x000000000000836e                UTEST5
+                0x0000000000008727                UTEST6
+                0x0000000000008a45                UTEST7
+                0x0000000000008fe4                UTEST8
+                0x0000000000009583                UTEST9
+                0x0000000000009a70                UTEST10
+                0x0000000000009f9f                UTEST11
+                0x000000000000a618                UTEST12
+                0x000000000000ac91                UTEST13
+                0x000000000000b36d                UTEST14
+                0x000000000000b508                UTEST15
+                0x000000000000b6a3                UTEST16
+                0x000000000000b83e                UTEST17
+                0x000000000000b9d9                UTEST18
+                0x000000000000bb74                UTEST19
+                0x000000000000be61                UTEST20
+                0x000000000000c14e                UTEST21
+                0x000000000000c5d5                UTEST22
+                0x000000000000ca5c                UTEST23
+                0x000000000000cde6                UTEST24
+                0x000000000000d521                UTEST25
+                0x000000000000dc59                UTEST26
+                0x000000000000e329                UTEST27
+                0x000000000000eac2                UTEST28
+                0x000000000000f2d1                UTEST29
+                0x000000000000fb45                UTEST30
+                0x000000000000fc02                UTEST31
+                0x000000000000fda4                UTEST32
+                0x00000000000100a8                UTEST33
+                0x0000000000010604                UTEST34
+                0x000000000001096e                UTEST35
+                0x0000000000010b7a                UTEST36
+                0x0000000000011096                UTEST37
+                0x0000000000011540                UTEST38
+                0x0000000000011901                UTEST39
+                0x0000000000011ea3                UTEST40
+                0x0000000000012530                UTEST41
+                0x0000000000012cf0                UTEST42
+                0x0000000000013467                UTEST43
+                0x0000000000013d11                UTEST44
+                0x0000000000014581                UTEST45
+                0x0000000000014f24                UTEST46
+                0x000000000001568b                UTEST47
+                0x0000000000015f85                UTEST48
+                0x000000000001687f                UTEST49
+                0x0000000000017227                UTEST50
+                0x00000000000172d4                UTEST51
+                0x000000000001746f                UTEST52
+                0x0000000000017661                UTEST53
+                0x0000000000017a80                UTEST54
+                0x0000000000017ddd                UTEST55
+                0x000000000001804e                UTEST56
+                0x00000000000183ab                UTEST57
+                0x0000000000018708                UTEST58
+                0x0000000000018a97                UTEST59
+                0x0000000000018c8e                UTEST60
+                0x00000000000190b7                UTEST61
+                0x000000000001941e                UTEST62
+                0x0000000000019694                UTEST63
+                0x00000000000199fb                UTEST64
+                0x0000000000019aa5                UTEST65
+                0x0000000000019c9e                UTEST66
+                0x0000000000019f4e                UTEST67
+                0x000000000001a1fe                UTEST68
+                0x000000000001a58a                UTEST69
+                0x000000000001a977                UTEST70
+                0x000000000001ad82                UTEST71
+                0x000000000001b21d                UTEST72
+                0x000000000001b3b8                UTEST73
+                0x000000000001b469                UTEST74
+                0x000000000001b69f                UTEST75
+                0x000000000001b980                UTEST76
+                0x000000000001bd14                UTEST77
+                0x000000000001c32b                UTEST78
+                0x000000000001c988                UTEST79
+                0x000000000001cec1                UTEST80
+                0x000000000001d40b                UTEST81
+                0x000000000001dadb                UTEST82
+                0x000000000001e132                UTEST83
+                0x000000000001e8a8                UTEST84
+                0x000000000001f018                UTEST85
+                0x000000000001f743                UTEST86
+                0x000000000001fd6c                UTEST87
+                0x000000000001ff02                UTEST88
+                0x000000000001fffe                UTEST89
+                0x0000000000020286                UTEST90
+                0x0000000000020643                UTEST91
+                0x0000000000020a00                UTEST92
+                0x0000000000020d20                UTEST93
+                0x00000000000212c5                UTEST94
+                0x000000000002186a                UTEST95
+                0x0000000000021e0f                UTEST96
+                0x00000000000223e8                UTEST97
+                0x000000000002297c                UTEST98
+                0x0000000000022e89                UTEST99
+                0x00000000000232dc                UTEST100
+                0x0000000000023917                UTEST101
+                0x0000000000023f52                UTEST102
+                0x00000000000240ed                UTEST103
+                0x0000000000024288                UTEST104
+                0x0000000000024423                UTEST105
+                0x00000000000245be                UTEST106
+                0x0000000000024759                UTEST107
+                0x0000000000024a48                UTEST108
+                0x0000000000024d37                UTEST109
+                0x000000000002520d                UTEST110
+                0x00000000000256e3                UTEST111
+                0x0000000000025ab2                UTEST112
+                0x00000000000261f3                UTEST113
+                0x0000000000026934                UTEST114
+                0x0000000000027072                UTEST115
+                0x000000000002765f                UTEST116
+                0x0000000000027bcf                UTEST117
+                0x000000000002813f                UTEST118
+                0x0000000000028956                UTEST119
+                0x000000000002916d                UTEST120
+                0x0000000000029308                UTEST121
+                0x00000000000293be                UTEST122
+                0x00000000000295f6                UTEST123
+                0x00000000000298d9                UTEST124
+                0x0000000000029c6f                UTEST125
+                0x000000000002a27b                UTEST126
+                0x000000000002a876                UTEST127
+                0x000000000002ad92                UTEST128
+                0x000000000002b2dc                UTEST129
+                0x000000000002b9b3                UTEST130
+                0x000000000002becf                UTEST131
+                0x000000000002c659                UTEST132
+                0x000000000002cce6                UTEST133
+                0x000000000002d399                UTEST134
+                0x000000000002d91a                UTEST135
+                0x000000000002e493                UTEST136
+                0x000000000002f086                UTEST137
+                0x000000000002f24a                UTEST138
+                0x000000000002f40e                UTEST139
+                0x000000000002f5db                __wrap_main
+ .text          0x000000000002f952     0x36a6 build-dir/rdebug.c.o
+                0x000000000002fe0d                print_source_location
+                0x0000000000030164                _rldebug_heap_wrapper
+                0x00000000000313f0                _rldebug_str_wrapper
+                0x0000000000031d01                _rldebug_io_wrapper
+                0x0000000000032088                _rldebug_stdlib_noreturn_wrapper
+                0x00000000000321b1                rldebug_show_leaked_resources
+                0x000000000003273d                rldebug_heap_get_leak_size
+                0x0000000000032789                rldebug_get_block_size
+                0x0000000000032c8f                rldebug_reset_limits
+                0x0000000000032d21                rldebug_heap_set_global_limit
+                0x0000000000032d5d                rldebug_heap_disable_all_functions
+                0x0000000000032d70                rldebug_heap_set_function_singleshot_limit
+                0x0000000000032dcf                rldebug_heap_set_function_cumulative_limit
+                0x0000000000032e2e                rldebug_set_function_success_limit
+                0x0000000000032e8d                rldebug_set_reported_severity_level
+                0x0000000000032ea0                remove_single_newline
+                0x0000000000032f24                rdebug_call_main
+ .text          0x0000000000032ff8      0x640 build-dir/memmanager.c.o
+                0x0000000000032ff8                memory_init
+                0x00000000000332ca                memory_check
+                0x00000000000333fb                custom_sbrk_check_fences_integrity
+                0x000000000003346f                custom_sbrk_get_reserved_memory
+                0x00000000000334ad                custom_sbrk
+ *fill*         0x0000000000033638        0x8 
+ .text          0x0000000000033640       0x61 //usr/lib/x86_64-linux-gnu/libc_nonshared.a(elf-init.oS)
+                0x0000000000033640                __libc_csu_init
+                0x00000000000336a0                __libc_csu_fini
+ .text          0x00000000000336a1        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/crtendS.o
+ .text          0x00000000000336a1        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
  *(.gnu.warning)
 
-.fini           0x00000000000331b4        0x9
+.fini           0x00000000000336a4        0x9
  *(SORT_NONE(.fini))
- .fini          0x00000000000331b4        0x4 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crti.o
-                0x00000000000331b4                _fini
- .fini          0x00000000000331b8        0x5 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
+ .fini          0x00000000000336a4        0x4 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crti.o
+                0x00000000000336a4                _fini
+ .fini          0x00000000000336a8        0x5 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
                 [!provide]                        PROVIDE (__etext = .)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (etext = .)
@@ -1388,9 +1409,9 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
  *(.igot)
                 0x0000000000042fe8                . = DATA_SEGMENT_RELRO_END (., (SIZEOF (.got.plt) >= 0x18)?0x18:0x0)
 
-.got.plt        0x0000000000042000      0x1c8
+.got.plt        0x0000000000042000      0x1d0
  *(.got.plt)
- .got.plt       0x0000000000042000      0x1c8 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
+ .got.plt       0x0000000000042000      0x1d0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
                 0x0000000000042000                _GLOBAL_OFFSET_TABLE_
  *(.igot.plt)
 
@@ -1442,21 +1463,21 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
  .bss           0x0000000000043028        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o
  .bss           0x0000000000043028        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crti.o
  .bss           0x0000000000043028        0x1 /usr/lib/gcc/x86_64-linux-gnu/8/crtbeginS.o
- *fill*         0x0000000000043029        0x7 
- .bss           0x0000000000043030       0x18 build-dir/heap.c.o
-                0x0000000000043030                manager
- .bss           0x0000000000043048        0x0 build-dir/main.c.o
- *fill*         0x0000000000043048       0x18 
- .bss           0x0000000000043060       0x90 build-dir/unit_helper_v2.c.o
- .bss           0x00000000000430f0        0x0 build-dir/unit_test_v2.c.o
- *fill*         0x00000000000430f0       0x10 
- .bss           0x0000000000043100      0x300 build-dir/rdebug.c.o
- .bss           0x0000000000043400        0x0 build-dir/memmanager.c.o
- .bss           0x0000000000043400        0x0 //usr/lib/x86_64-linux-gnu/libc_nonshared.a(elf-init.oS)
- .bss           0x0000000000043400        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/crtendS.o
- .bss           0x0000000000043400        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
+ *fill*         0x0000000000043029       0x17 
+ .bss           0x0000000000043040       0x48 build-dir/heap.c.o
+                0x0000000000043040                manager
+ .bss           0x0000000000043088        0x0 build-dir/main.c.o
+ *fill*         0x0000000000043088       0x18 
+ .bss           0x00000000000430a0       0x90 build-dir/unit_helper_v2.c.o
+ .bss           0x0000000000043130        0x0 build-dir/unit_test_v2.c.o
+ *fill*         0x0000000000043130       0x10 
+ .bss           0x0000000000043140      0x300 build-dir/rdebug.c.o
+ .bss           0x0000000000043440        0x0 build-dir/memmanager.c.o
+ .bss           0x0000000000043440        0x0 //usr/lib/x86_64-linux-gnu/libc_nonshared.a(elf-init.oS)
+ .bss           0x0000000000043440        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/crtendS.o
+ .bss           0x0000000000043440        0x0 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
  *(COMMON)
- *fill*         0x0000000000043400      0xc00 
+ *fill*         0x0000000000043440      0xbc0 
  COMMON         0x0000000000044000  0x4004040 build-dir/memmanager.c.o
                 0x0000000000044000                memory
                 0x0000000004046000                mm
@@ -1540,49 +1561,49 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0xa09a
+.debug_info     0x0000000000000000     0xa28e
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000      0xc59 build-dir/heap.c.o
- .debug_info    0x0000000000000c59      0x390 build-dir/main.c.o
- .debug_info    0x0000000000000fe9      0xd1c build-dir/unit_helper_v2.c.o
- .debug_info    0x0000000000001d05     0x5ef5 build-dir/unit_test_v2.c.o
- .debug_info    0x0000000000007bfa     0x1c01 build-dir/rdebug.c.o
- .debug_info    0x00000000000097fb      0x89f build-dir/memmanager.c.o
+ .debug_info    0x0000000000000000      0xe4d build-dir/heap.c.o
+ .debug_info    0x0000000000000e4d      0x390 build-dir/main.c.o
+ .debug_info    0x00000000000011dd      0xd1c build-dir/unit_helper_v2.c.o
+ .debug_info    0x0000000000001ef9     0x5ef5 build-dir/unit_test_v2.c.o
+ .debug_info    0x0000000000007dee     0x1c01 build-dir/rdebug.c.o
+ .debug_info    0x00000000000099ef      0x89f build-dir/memmanager.c.o
 
-.debug_abbrev   0x0000000000000000      0xdc7
+.debug_abbrev   0x0000000000000000      0xdda
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000      0x255 build-dir/heap.c.o
- .debug_abbrev  0x0000000000000255       0xe4 build-dir/main.c.o
- .debug_abbrev  0x0000000000000339      0x331 build-dir/unit_helper_v2.c.o
- .debug_abbrev  0x000000000000066a      0x23b build-dir/unit_test_v2.c.o
- .debug_abbrev  0x00000000000008a5      0x306 build-dir/rdebug.c.o
- .debug_abbrev  0x0000000000000bab      0x21c build-dir/memmanager.c.o
+ .debug_abbrev  0x0000000000000000      0x268 build-dir/heap.c.o
+ .debug_abbrev  0x0000000000000268       0xe4 build-dir/main.c.o
+ .debug_abbrev  0x000000000000034c      0x331 build-dir/unit_helper_v2.c.o
+ .debug_abbrev  0x000000000000067d      0x23b build-dir/unit_test_v2.c.o
+ .debug_abbrev  0x00000000000008b8      0x306 build-dir/rdebug.c.o
+ .debug_abbrev  0x0000000000000bbe      0x21c build-dir/memmanager.c.o
 
-.debug_line     0x0000000000000000     0xeb3d
+.debug_line     0x0000000000000000     0xecfd
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x0000000000000000     0x1478 build-dir/heap.c.o
- .debug_line    0x0000000000001478      0x49b build-dir/main.c.o
- .debug_line    0x0000000000001913      0x9b3 build-dir/unit_helper_v2.c.o
- .debug_line    0x00000000000022c6     0xac26 build-dir/unit_test_v2.c.o
- .debug_line    0x000000000000ceec     0x13fa build-dir/rdebug.c.o
- .debug_line    0x000000000000e2e6      0x857 build-dir/memmanager.c.o
+ .debug_line    0x0000000000000000     0x15e4 build-dir/heap.c.o
+ .debug_line    0x00000000000015e4      0x4ef build-dir/main.c.o
+ .debug_line    0x0000000000001ad3      0x9b3 build-dir/unit_helper_v2.c.o
+ .debug_line    0x0000000000002486     0xac26 build-dir/unit_test_v2.c.o
+ .debug_line    0x000000000000d0ac     0x13fa build-dir/rdebug.c.o
+ .debug_line    0x000000000000e4a6      0x857 build-dir/memmanager.c.o
 
 .debug_frame
  *(.debug_frame)
 
 .debug_str      0x0000000000000000    0x12f44
  *(.debug_str)
- .debug_str     0x0000000000000000     0xb4b8 build-dir/heap.c.o
-                                       0xb822 (size before relaxing)
- .debug_str     0x000000000000b4b8        0x7 build-dir/main.c.o
-                                       0x716b (size before relaxing)
- .debug_str     0x000000000000b4bf     0x2877 build-dir/unit_helper_v2.c.o
+ .debug_str     0x0000000000000000     0xcfb8 build-dir/heap.c.o
+                                       0xd35c (size before relaxing)
+ .debug_str     0x000000000000cfb8        0x7 build-dir/main.c.o
+                                       0x8af5 (size before relaxing)
+ .debug_str     0x000000000000cfbf     0x2877 build-dir/unit_helper_v2.c.o
                                        0x9eaf (size before relaxing)
- .debug_str     0x000000000000dd36     0x246e build-dir/unit_test_v2.c.o
+ .debug_str     0x000000000000f836      0xb0d build-dir/unit_test_v2.c.o
                                        0xe910 (size before relaxing)
- .debug_str     0x00000000000101a4     0x2a41 build-dir/rdebug.c.o
+ .debug_str     0x0000000000010343     0x2a41 build-dir/rdebug.c.o
                                        0xf374 (size before relaxing)
- .debug_str     0x0000000000012be5      0x35f build-dir/memmanager.c.o
+ .debug_str     0x0000000000012d84      0x1c0 build-dir/memmanager.c.o
                                        0xd21d (size before relaxing)
 
 .debug_loc
@@ -1609,126 +1630,126 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/crtn.o
 .debug_ranges
  *(.debug_ranges)
 
-.debug_macro    0x0000000000000000     0x5dd7
+.debug_macro    0x0000000000000000     0x5e93
  *(.debug_macro)
- .debug_macro   0x0000000000000000      0x45f build-dir/heap.c.o
- .debug_macro   0x000000000000045f      0x80e build-dir/heap.c.o
- .debug_macro   0x0000000000000c6d       0x1c build-dir/heap.c.o
- .debug_macro   0x0000000000000c89       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000000c99      0x293 build-dir/heap.c.o
- .debug_macro   0x0000000000000f2c      0x171 build-dir/heap.c.o
- .debug_macro   0x000000000000109d       0x16 build-dir/heap.c.o
- .debug_macro   0x00000000000010b3       0x4a build-dir/heap.c.o
- .debug_macro   0x00000000000010fd       0x58 build-dir/heap.c.o
- .debug_macro   0x0000000000001155       0x34 build-dir/heap.c.o
- .debug_macro   0x0000000000001189       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001199       0x97 build-dir/heap.c.o
- .debug_macro   0x0000000000001230       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001240       0x66 build-dir/heap.c.o
- .debug_macro   0x00000000000012a6       0xee build-dir/heap.c.o
- .debug_macro   0x0000000000001394       0x34 build-dir/heap.c.o
- .debug_macro   0x00000000000013c8       0x5e build-dir/heap.c.o
- .debug_macro   0x0000000000001426       0x34 build-dir/heap.c.o
- .debug_macro   0x000000000000145a       0x2e build-dir/heap.c.o
- .debug_macro   0x0000000000001488       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001498       0x3a build-dir/heap.c.o
- .debug_macro   0x00000000000014d2       0x16 build-dir/heap.c.o
- .debug_macro   0x00000000000014e8      0x29f build-dir/heap.c.o
- .debug_macro   0x0000000000001787       0x16 build-dir/heap.c.o
- .debug_macro   0x000000000000179d       0x97 build-dir/heap.c.o
- .debug_macro   0x0000000000001834       0x52 build-dir/heap.c.o
- .debug_macro   0x0000000000001886       0x4c build-dir/heap.c.o
- .debug_macro   0x00000000000018d2       0x2e build-dir/heap.c.o
- .debug_macro   0x0000000000001900       0x2e build-dir/heap.c.o
- .debug_macro   0x000000000000192e       0x86 build-dir/heap.c.o
- .debug_macro   0x00000000000019b4       0x28 build-dir/heap.c.o
- .debug_macro   0x00000000000019dc       0x52 build-dir/heap.c.o
- .debug_macro   0x0000000000001a2e       0x19 build-dir/heap.c.o
- .debug_macro   0x0000000000001a47       0x12 build-dir/heap.c.o
- .debug_macro   0x0000000000001a59       0x12 build-dir/heap.c.o
- .debug_macro   0x0000000000001a6b       0x1c build-dir/heap.c.o
- .debug_macro   0x0000000000001a87       0x28 build-dir/heap.c.o
- .debug_macro   0x0000000000001aaf       0x1c build-dir/heap.c.o
- .debug_macro   0x0000000000001acb       0x4c build-dir/heap.c.o
- .debug_macro   0x0000000000001b17       0x22 build-dir/heap.c.o
- .debug_macro   0x0000000000001b39       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001b49       0x46 build-dir/heap.c.o
- .debug_macro   0x0000000000001b8f       0x20 build-dir/heap.c.o
- .debug_macro   0x0000000000001baf       0x76 build-dir/heap.c.o
- .debug_macro   0x0000000000001c25       0x17 build-dir/heap.c.o
- .debug_macro   0x0000000000001c3c       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001c4c       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001c5c       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001c6c       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001c7c       0x20 build-dir/heap.c.o
- .debug_macro   0x0000000000001c9c       0x12 build-dir/heap.c.o
- .debug_macro   0x0000000000001cae       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000001cbe       0xd6 build-dir/heap.c.o
- .debug_macro   0x0000000000001d94      0x256 build-dir/heap.c.o
- .debug_macro   0x0000000000001fea       0x16 build-dir/heap.c.o
- .debug_macro   0x0000000000002000       0x58 build-dir/heap.c.o
- .debug_macro   0x0000000000002058      0x100 build-dir/heap.c.o
- .debug_macro   0x0000000000002158       0x11 build-dir/heap.c.o
- .debug_macro   0x0000000000002169       0x6a build-dir/heap.c.o
- .debug_macro   0x00000000000021d3      0x190 build-dir/heap.c.o
- .debug_macro   0x0000000000002363       0x4c build-dir/heap.c.o
- .debug_macro   0x00000000000023af       0x27 build-dir/heap.c.o
- .debug_macro   0x00000000000023d6       0x3c build-dir/heap.c.o
- .debug_macro   0x0000000000002412      0x824 build-dir/heap.c.o
- .debug_macro   0x0000000000002c36       0x27 build-dir/heap.c.o
- .debug_macro   0x0000000000002c5d       0x37 build-dir/heap.c.o
- .debug_macro   0x0000000000002c94       0x10 build-dir/heap.c.o
- .debug_macro   0x0000000000002ca4      0x373 build-dir/main.c.o
- .debug_macro   0x0000000000003017       0x10 build-dir/main.c.o
- .debug_macro   0x0000000000003027       0x52 build-dir/main.c.o
- .debug_macro   0x0000000000003079       0xfa build-dir/main.c.o
- .debug_macro   0x0000000000003173       0x73 build-dir/main.c.o
- .debug_macro   0x00000000000031e6       0x4c build-dir/main.c.o
- .debug_macro   0x0000000000003232      0x4fa build-dir/unit_helper_v2.c.o
- .debug_macro   0x000000000000372c       0x4c build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003778       0x49 build-dir/unit_helper_v2.c.o
- .debug_macro   0x00000000000037c1      0x171 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003932       0xaa build-dir/unit_helper_v2.c.o
- .debug_macro   0x00000000000039dc       0x27 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003a03       0xf4 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003af7       0x94 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003b8b       0x10 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003b9b       0xb4 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003c4f      0x148 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003d97       0x1c build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003db3       0x22 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003dd5       0x12 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003de7       0x6a build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003e51       0x1c build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003e6d       0x10 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003e7d       0xad build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003f2a       0x16 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003f40       0x16 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003f56       0x12 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003f68       0x34 build-dir/unit_helper_v2.c.o
- .debug_macro   0x0000000000003f9c      0x590 build-dir/unit_test_v2.c.o
- .debug_macro   0x000000000000452c       0x10 build-dir/unit_test_v2.c.o
- .debug_macro   0x000000000000453c       0x65 build-dir/unit_test_v2.c.o
- .debug_macro   0x00000000000045a1       0x16 build-dir/unit_test_v2.c.o
- .debug_macro   0x00000000000045b7       0xca build-dir/unit_test_v2.c.o
- .debug_macro   0x0000000000004681       0x5e build-dir/unit_test_v2.c.o
- .debug_macro   0x00000000000046df       0x94 build-dir/unit_test_v2.c.o
- .debug_macro   0x0000000000004773       0xbb build-dir/unit_test_v2.c.o
- .debug_macro   0x000000000000482e      0x61f build-dir/rdebug.c.o
- .debug_macro   0x0000000000004e4d       0x8d build-dir/rdebug.c.o
- .debug_macro   0x0000000000004eda       0x35 build-dir/rdebug.c.o
- .debug_macro   0x0000000000004f0f      0x3a3 build-dir/rdebug.c.o
- .debug_macro   0x00000000000052b2       0xac build-dir/rdebug.c.o
- .debug_macro   0x000000000000535e       0x1c build-dir/rdebug.c.o
- .debug_macro   0x000000000000537a       0x10 build-dir/rdebug.c.o
- .debug_macro   0x000000000000538a      0x325 build-dir/rdebug.c.o
- .debug_macro   0x00000000000056af       0x34 build-dir/rdebug.c.o
- .debug_macro   0x00000000000056e3       0x58 build-dir/rdebug.c.o
- .debug_macro   0x000000000000573b       0xce build-dir/rdebug.c.o
- .debug_macro   0x0000000000005809       0xa3 build-dir/rdebug.c.o
- .debug_macro   0x00000000000058ac       0x23 build-dir/rdebug.c.o
- .debug_macro   0x00000000000058cf      0x4a7 build-dir/memmanager.c.o
- .debug_macro   0x0000000000005d76       0x61 build-dir/memmanager.c.o
+ .debug_macro   0x0000000000000000      0x4bd build-dir/heap.c.o
+ .debug_macro   0x00000000000004bd      0x80e build-dir/heap.c.o
+ .debug_macro   0x0000000000000ccb       0x1c build-dir/heap.c.o
+ .debug_macro   0x0000000000000ce7       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000000cf7      0x293 build-dir/heap.c.o
+ .debug_macro   0x0000000000000f8a      0x171 build-dir/heap.c.o
+ .debug_macro   0x00000000000010fb       0x16 build-dir/heap.c.o
+ .debug_macro   0x0000000000001111       0x4a build-dir/heap.c.o
+ .debug_macro   0x000000000000115b       0x58 build-dir/heap.c.o
+ .debug_macro   0x00000000000011b3       0x34 build-dir/heap.c.o
+ .debug_macro   0x00000000000011e7       0x10 build-dir/heap.c.o
+ .debug_macro   0x00000000000011f7       0x97 build-dir/heap.c.o
+ .debug_macro   0x000000000000128e       0x10 build-dir/heap.c.o
+ .debug_macro   0x000000000000129e       0x66 build-dir/heap.c.o
+ .debug_macro   0x0000000000001304       0xee build-dir/heap.c.o
+ .debug_macro   0x00000000000013f2       0x34 build-dir/heap.c.o
+ .debug_macro   0x0000000000001426       0x5e build-dir/heap.c.o
+ .debug_macro   0x0000000000001484       0x34 build-dir/heap.c.o
+ .debug_macro   0x00000000000014b8       0x2e build-dir/heap.c.o
+ .debug_macro   0x00000000000014e6       0x10 build-dir/heap.c.o
+ .debug_macro   0x00000000000014f6       0x3a build-dir/heap.c.o
+ .debug_macro   0x0000000000001530       0x16 build-dir/heap.c.o
+ .debug_macro   0x0000000000001546      0x29f build-dir/heap.c.o
+ .debug_macro   0x00000000000017e5       0x16 build-dir/heap.c.o
+ .debug_macro   0x00000000000017fb       0x97 build-dir/heap.c.o
+ .debug_macro   0x0000000000001892       0x52 build-dir/heap.c.o
+ .debug_macro   0x00000000000018e4       0x4c build-dir/heap.c.o
+ .debug_macro   0x0000000000001930       0x2e build-dir/heap.c.o
+ .debug_macro   0x000000000000195e       0x2e build-dir/heap.c.o
+ .debug_macro   0x000000000000198c       0x86 build-dir/heap.c.o
+ .debug_macro   0x0000000000001a12       0x28 build-dir/heap.c.o
+ .debug_macro   0x0000000000001a3a       0x52 build-dir/heap.c.o
+ .debug_macro   0x0000000000001a8c       0x19 build-dir/heap.c.o
+ .debug_macro   0x0000000000001aa5       0x12 build-dir/heap.c.o
+ .debug_macro   0x0000000000001ab7       0x12 build-dir/heap.c.o
+ .debug_macro   0x0000000000001ac9       0x1c build-dir/heap.c.o
+ .debug_macro   0x0000000000001ae5       0x28 build-dir/heap.c.o
+ .debug_macro   0x0000000000001b0d       0x1c build-dir/heap.c.o
+ .debug_macro   0x0000000000001b29       0x4c build-dir/heap.c.o
+ .debug_macro   0x0000000000001b75       0x22 build-dir/heap.c.o
+ .debug_macro   0x0000000000001b97       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001ba7       0x46 build-dir/heap.c.o
+ .debug_macro   0x0000000000001bed       0x20 build-dir/heap.c.o
+ .debug_macro   0x0000000000001c0d       0x76 build-dir/heap.c.o
+ .debug_macro   0x0000000000001c83       0x17 build-dir/heap.c.o
+ .debug_macro   0x0000000000001c9a       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001caa       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001cba       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001cca       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001cda       0x20 build-dir/heap.c.o
+ .debug_macro   0x0000000000001cfa       0x12 build-dir/heap.c.o
+ .debug_macro   0x0000000000001d0c       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000001d1c       0xd6 build-dir/heap.c.o
+ .debug_macro   0x0000000000001df2      0x256 build-dir/heap.c.o
+ .debug_macro   0x0000000000002048       0x16 build-dir/heap.c.o
+ .debug_macro   0x000000000000205e       0x58 build-dir/heap.c.o
+ .debug_macro   0x00000000000020b6      0x100 build-dir/heap.c.o
+ .debug_macro   0x00000000000021b6       0x11 build-dir/heap.c.o
+ .debug_macro   0x00000000000021c7       0x16 build-dir/heap.c.o
+ .debug_macro   0x00000000000021dd       0xca build-dir/heap.c.o
+ .debug_macro   0x00000000000022a7       0x5e build-dir/heap.c.o
+ .debug_macro   0x0000000000002305       0x94 build-dir/heap.c.o
+ .debug_macro   0x0000000000002399       0xbb build-dir/heap.c.o
+ .debug_macro   0x0000000000002454       0x6a build-dir/heap.c.o
+ .debug_macro   0x00000000000024be      0x190 build-dir/heap.c.o
+ .debug_macro   0x000000000000264e       0x4c build-dir/heap.c.o
+ .debug_macro   0x000000000000269a       0x27 build-dir/heap.c.o
+ .debug_macro   0x00000000000026c1       0x3c build-dir/heap.c.o
+ .debug_macro   0x00000000000026fd      0x824 build-dir/heap.c.o
+ .debug_macro   0x0000000000002f21       0x27 build-dir/heap.c.o
+ .debug_macro   0x0000000000002f48       0x37 build-dir/heap.c.o
+ .debug_macro   0x0000000000002f7f       0x10 build-dir/heap.c.o
+ .debug_macro   0x0000000000002f8f      0x3d1 build-dir/main.c.o
+ .debug_macro   0x0000000000003360       0x10 build-dir/main.c.o
+ .debug_macro   0x0000000000003370       0x52 build-dir/main.c.o
+ .debug_macro   0x00000000000033c2       0xfa build-dir/main.c.o
+ .debug_macro   0x00000000000034bc       0x73 build-dir/main.c.o
+ .debug_macro   0x000000000000352f       0x4c build-dir/main.c.o
+ .debug_macro   0x000000000000357b      0x4fa build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003a75       0x4c build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003ac1       0x49 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003b0a      0x171 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003c7b       0xaa build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003d25       0x27 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003d4c       0xf4 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003e40       0x94 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003ed4       0x10 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003ee4       0xb4 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000003f98      0x148 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000040e0       0x1c build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000040fc       0x22 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x000000000000411e       0x12 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000004130       0x6a build-dir/unit_helper_v2.c.o
+ .debug_macro   0x000000000000419a       0x1c build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000041b6       0x10 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000041c6       0xad build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000004273       0x16 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x0000000000004289       0x16 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x000000000000429f       0x12 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000042b1       0x34 build-dir/unit_helper_v2.c.o
+ .debug_macro   0x00000000000042e5      0x590 build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000004875       0x10 build-dir/unit_test_v2.c.o
+ .debug_macro   0x0000000000004885       0x65 build-dir/unit_test_v2.c.o
+ .debug_macro   0x00000000000048ea      0x61f build-dir/rdebug.c.o
+ .debug_macro   0x0000000000004f09       0x8d build-dir/rdebug.c.o
+ .debug_macro   0x0000000000004f96       0x35 build-dir/rdebug.c.o
+ .debug_macro   0x0000000000004fcb      0x3a3 build-dir/rdebug.c.o
+ .debug_macro   0x000000000000536e       0xac build-dir/rdebug.c.o
+ .debug_macro   0x000000000000541a       0x1c build-dir/rdebug.c.o
+ .debug_macro   0x0000000000005436       0x10 build-dir/rdebug.c.o
+ .debug_macro   0x0000000000005446      0x325 build-dir/rdebug.c.o
+ .debug_macro   0x000000000000576b       0x34 build-dir/rdebug.c.o
+ .debug_macro   0x000000000000579f       0x58 build-dir/rdebug.c.o
+ .debug_macro   0x00000000000057f7       0xce build-dir/rdebug.c.o
+ .debug_macro   0x00000000000058c5       0xa3 build-dir/rdebug.c.o
+ .debug_macro   0x0000000000005968       0x23 build-dir/rdebug.c.o
+ .debug_macro   0x000000000000598b      0x4a7 build-dir/memmanager.c.o
+ .debug_macro   0x0000000000005e32       0x61 build-dir/memmanager.c.o
 
 .debug_addr
  *(.debug_addr)
@@ -5516,16 +5537,19 @@ pthread_mutex_consistent_np@@GLIBC_2.4            /usr/lib/gcc/x86_64-linux-gnu/
 pthread_mutex_consistent_np@GLIBC_2.4             /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutex_destroy                             /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutex_destroy@@GLIBC_2.2.5                /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   //lib/x86_64-linux-gnu/libc.so.6
 pthread_mutex_destroy@GLIBC_2.2.5                 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutex_init                                /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutex_init@@GLIBC_2.2.5                   /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   //lib/x86_64-linux-gnu/libc.so.6
 pthread_mutex_init@GLIBC_2.2.5                    /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutex_lock                                /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutex_lock@@GLIBC_2.2.5                   /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   //lib/x86_64-linux-gnu/libc.so.6
 pthread_mutex_lock@GLIBC_2.2.5                    /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
@@ -5537,9 +5561,14 @@ pthread_mutex_trylock@@GLIBC_2.2.5                /usr/lib/gcc/x86_64-linux-gnu/
 pthread_mutex_trylock@GLIBC_2.2.5                 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutex_unlock                              /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutex_unlock@@GLIBC_2.2.5                 /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   //lib/x86_64-linux-gnu/libc.so.6
 pthread_mutex_unlock@GLIBC_2.2.5                  /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
+pthread_mutexattr_destroy                         /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
+                                                  build-dir/heap.c.o
+pthread_mutexattr_destroy@@GLIBC_2.2.5            /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
+pthread_mutexattr_destroy@GLIBC_2.2.5             /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_getkind_np                      /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_getkind_np@@GLIBC_2.2.5         /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_getkind_np@GLIBC_2.2.5          /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
@@ -5548,6 +5577,7 @@ pthread_mutexattr_getrobust_np@@GLIBC_2.4         /usr/lib/gcc/x86_64-linux-gnu/
 pthread_mutexattr_getrobust_np@GLIBC_2.4          /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_init                            /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutexattr_init@@GLIBC_2.2.5               /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_init@GLIBC_2.2.5                /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_setkind_np                      /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
@@ -5558,6 +5588,7 @@ pthread_mutexattr_setrobust_np@@GLIBC_2.4         /usr/lib/gcc/x86_64-linux-gnu/
 pthread_mutexattr_setrobust_np@GLIBC_2.4          /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_settype                         /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
                                                   build-dir/memmanager.c.o
+                                                  build-dir/heap.c.o
 pthread_mutexattr_settype@@GLIBC_2.2.5            /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_mutexattr_settype@GLIBC_2.2.5             /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so
 pthread_once                                      /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/libpthread.so

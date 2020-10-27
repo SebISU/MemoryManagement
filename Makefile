@@ -91,7 +91,6 @@ ${OUTDIR}/memmanager.c.o:  memmanager.c
 
 .PHONY: build rebuild run_main run_main_tests run_unit_tests clean
 
-
 #
 # Przygotownie środowiska
 #
