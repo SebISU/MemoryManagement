@@ -3,6 +3,7 @@
 
 #include <time.h>
 #include <stdint.h>
+#include <pthread.h>
 
 struct chunk_t{
 
@@ -23,6 +24,8 @@ typedef struct{
 	intptr_t start;
 	intptr_t end;
 	chunk head;
+	pthread_mutex_t mutex;
+	pthread_mutexattr_t attrs;
 
 } heap;
 
