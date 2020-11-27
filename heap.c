@@ -614,22 +614,17 @@ void* heap_malloc_aligned(size_t size){
 
             if (el->next == NULL){
 
-                int x = 2;
+                if ((intptr_t)(PAGE_SIZE - REMAINDER((uint8_t*)el + ADD_SIZE + el->len)) >= BEF_DATA){
 
-<<<<<<< HEAD
-                if ((intptr_t)(PAGE_SIZE - REMAINDER((uint8_t*)el + ADD_SIZE + el->len)) >= BEF_DATA){  // less code, if doesn't work go back to the previous version
-=======
                     if (-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE)){
                     
                         pthread_mutex_unlock(&manager.mutex);
                         return NULL;
                     }
->>>>>>> project5
 
-                    x = 1;
+                    manager.end += ((size + FENCE - 1)/PAGE_SIZE + 1) * PAGE_SIZE;
+                    el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + PAGE_SIZE - BEF_DATA);
                 }
-<<<<<<< HEAD
-=======
                 else{
 
                     if ((intptr_t)-1 == (intptr_t)custom_sbrk(((size + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE)){
@@ -637,11 +632,11 @@ void* heap_malloc_aligned(size_t size){
                         pthread_mutex_unlock(&manager.mutex);
                         return NULL;
                     }
->>>>>>> project5
 
-                manager.end += ((size + FENCE - 1)/PAGE_SIZE + x) * PAGE_SIZE;
-                el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + x * PAGE_SIZE - BEF_DATA);
-
+                    manager.end += ((size + FENCE - 1)/PAGE_SIZE + 2) * PAGE_SIZE;
+                    el->next = (chunk)((uint8_t*)el + el->len + ADD_SIZE - REMAINDER((uint8_t*)el + el->len + ADD_SIZE) + 2 * PAGE_SIZE - BEF_DATA);
+                }
+                
                 el->next->prev = el;
                 el->next->next = NULL;
                 el->next->len = size;
