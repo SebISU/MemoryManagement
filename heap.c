@@ -10,8 +10,8 @@
 #define PAGE_SIZE 4096 // page length in bytes
 #define FENCE 8 // fence length in bytes
 #define CHUNK 48    //struct chunk size
-#define CHUNK_CHECK (CHUNK - 8) // length of memory to chunk truct sumcheck
-#define ADD_SIZE (2 * FENCE + CHUNK)  // addictional allocation length
+#define CHUNK_CHECK (CHUNK - 8) // length of memory to chunk struct sumcheck
+#define ADD_SIZE (2 * FENCE + CHUNK)  // additional allocation length
 #define BEF_DATA (FENCE + CHUNK) // from pointer to first data index
 #define REMAINDER(ptr) ((intptr_t)(ptr) & (intptr_t)(PAGE_SIZE - 1)) // calculate remainder of page allignment
 #define WRD_LEN ((int)sizeof(void*)) // machine word length
