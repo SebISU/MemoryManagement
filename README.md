@@ -1,2 +1,2 @@
 # memory-management
-Own memory allocation funcs
+Set of functions written in C for memory allocation
